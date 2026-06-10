@@ -24,7 +24,7 @@ const now = () => new Date().toISOString();
 
 // Folk DC mapping — based on community reports from t.me/vdsina_chat
 const FOLK_DC_MAP = {
-  dc2_dead:  ['89.110','212.34','91.84','94.103','77.238','87.199','195.63','80.85','77.105',
+  dc2_dead:  ['89.110','212.34','91.84','77.238','87.199','80.85','77.105',
               '141.163','144.124','178.130','178.217','185.121','185.157','185.21',
               '185.245','193.178','194.164','194.246','194.60','195.200','195.26','212.111',
               '91.246','93.183','5.35'],
@@ -160,10 +160,10 @@ async function scanRanges() {
     const batch = sortedKeys.slice(i, i + 10);
     const batchPromises = batch.map(async key => {
       const pfxList = groups[key];
-      // Pick up to 3 subnets: first, middle, last
-      const pickIdx = [0];
-      if (pfxList.length > 2) pickIdx.push(Math.floor(pfxList.length / 2));
-      if (pfxList.length > 1) pickIdx.push(pfxList.length - 1);
+      // Pick evenly spaced subnets: more for larger groups
+      const count = pfxList.length <= 4 ? pfxList.length : pfxList.length <= 16 ? 4 : 6;
+      const pickIdx = [];
+      for (let pi = 0; pi < count; pi++) pickIdx.push(Math.min(Math.floor(pi * pfxList.length / count), pfxList.length - 1));
       const subnets = [...new Set(pickIdx)].map(i => pfxList[i].replace(/\/\d+$/, '').split('.'));
 
       const probeIPs = [];
