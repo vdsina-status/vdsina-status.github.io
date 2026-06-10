@@ -37,8 +37,8 @@
     "probes": [
       {
         "ip": "109.234.36.5",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "109.234.36.10",
@@ -56,9 +56,9 @@
         "banner": ""
       }
     ],
-    "alive": 2,
+    "alive": 3,
     "total": 4,
-    "percent": 50,
+    "percent": 75,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
     "status": "PARTIAL"
