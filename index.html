@@ -172,7 +172,7 @@ canvas{width:100%;height:160px;margin-top:8px}
 <!-- Header -->
 <div class="hdr">
   <h1><div class="logo">V</div><span>VDSina</span> Status</h1>
-  <div class="meta"><div class="dot"></div>Данные: <em id="lastCheck">...</em> · 5 мин (<span id="nextRefresh"></span>)</div>
+  <div class="meta"><div class="dot"></div><em id="lastCheck">...</em> · <span id="nextRefresh"></span></div>
 </div>
 
 <div id="loading"><div class="spinner"></div>Загрузка данных...</div>
@@ -320,14 +320,14 @@ function badge(up,code,err){
 function dv(label,a,b){
   if(a===undefined||b===undefined)return'';
   const d=b-a;
-  if(d===0)return`<span class="c-m">${label}: ${b} (=)</span>`;
-  return`<span style="color:${d>0?'var(--g)':'var(--r)'};font-weight:700">${d>0?'▲':'▼'} ${label}: ${a}→${b} (${d>0?'+':''}${d})</span>`;
+  if(d===0)return'';
+  return`<span style="color:${d>0?'var(--g)':'var(--r)'};font-weight:700">${d>0?'▲':'▼'} ${label}: ${a} → ${b} (${d>0?'+':''}${d})</span>`;
 }
 
 function renderDeltas(h){
   const n=h[h.length-1];if(!n)return;
   const h1=h.length>12?h[h.length-13]:h[0],h24=h.length>288?h[h.length-289]:h[0];
-  const fmt=(p,c,el)=>{const parts=[dv('UP',p.up,c.up),dv('DNS',p.dns,c.dns),dv('BGP',p.bgpV4,c.bgpV4),dv('Ranges',p.rangesAlive,c.rangesAlive)].filter(Boolean);el.innerHTML=parts.length?parts.join('<br>'):'<span class="c-m">Без изменений</span>';};
+  const fmt=(p,c,el)=>{const parts=[dv('Эндпоинты',p.up,c.up),dv('DNS',p.dns,c.dns),dv('BGP',p.bgpV4,c.bgpV4),dv('Диапазоны',p.rangesAlive,c.rangesAlive)].filter(Boolean);el.innerHTML=parts.length?parts.join('<br>'):'<span class="c-m">Без изменений</span>';};
   fmt(h1,n,document.getElementById('delta1hContent'));
   fmt(h24,n,document.getElementById('delta24hContent'));
 }
