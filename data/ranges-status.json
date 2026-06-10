@@ -171,8 +171,8 @@
       },
       {
         "ip": "144.124.233.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "144.124.233.50",
@@ -220,9 +220,9 @@
         "banner": "SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3"
       }
     ],
-    "alive": 11,
+    "alive": 10,
     "total": 12,
-    "percent": 92,
+    "percent": 83,
     "dc": "DC2 (partial)",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
     "status": "ALIVE"
