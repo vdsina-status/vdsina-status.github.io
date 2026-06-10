@@ -1655,8 +1655,8 @@
       },
       {
         "ip": "94.103.81.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "94.103.81.50",
@@ -1664,11 +1664,11 @@
         "banner": ""
       }
     ],
-    "alive": 1,
+    "alive": 0,
     "total": 6,
-    "percent": 17,
-    "dc": "DC3",
-    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
-    "status": "PARTIAL"
+    "percent": 0,
+    "dc": "DC3 (down)",
+    "banner": "",
+    "status": "DEAD"
   }
 ]
