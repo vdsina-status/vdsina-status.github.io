@@ -687,8 +687,8 @@
       },
       {
         "ip": "212.118.42.50",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "212.118.42.100",
@@ -696,12 +696,12 @@
         "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       }
     ],
-    "alive": 3,
+    "alive": 4,
     "total": 4,
-    "percent": 75,
+    "percent": 100,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15",
-    "status": "PARTIAL"
+    "status": "ALIVE"
   },
   {
     "range": "212.34.x.x",
