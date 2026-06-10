@@ -1,0 +1,12 @@
+{
+  "name": "vdsina-status",
+  "version": "1.0.0",
+  "description": "Public VDSina service status monitor with Telegram alerts",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/checker.mjs",
+    "test": "node scripts/checker.mjs --dry-run"
+  },
+  "dependencies": {}
+
+}

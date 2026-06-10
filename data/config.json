@@ -1,0 +1,53 @@
+{
+  "telegram": {
+    "botToken": "8945806487:AAEs0EH3NynMSqsUgCUEiavIoKm_0-usMqo",
+    "chatId": "@VdsinaINFO",
+    "adminId": 1784238089
+  },
+  "asn": "AS216071",
+  "incidentStart": "2026-06-02T13:54:00Z",
+  "checkIntervalMinutes": 5,
+  "endpoints": [
+    { "id": "api-root",       "url": "https://api.vdsina.com/",           "category": "api",    "label": "API Root" },
+    { "id": "api-v1",         "url": "https://api.vdsina.com/v1",         "category": "api",    "label": "API /v1" },
+    { "id": "api-v1-account", "url": "https://api.vdsina.com/v1/account", "category": "api",    "label": "API /v1/account" },
+    { "id": "api-v1-server",  "url": "https://api.vdsina.com/v1/server",  "category": "api",    "label": "API /v1/server" },
+    { "id": "api-v1-auth",    "url": "https://api.vdsina.com/v1/auth",    "category": "api",    "label": "API /v1/auth" },
+    { "id": "cp",             "url": "https://cp.vdsina.com/",            "category": "panel",  "label": "CP (Status Page)" },
+    { "id": "cp-login",       "url": "https://cp.vdsina.com/login",       "category": "panel",  "label": "CP Login" },
+    { "id": "panel",          "url": "https://panel.vdsina.com/",         "category": "panel",  "label": "Panel" },
+    { "id": "my",             "url": "https://my.vdsina.com/",            "category": "panel",  "label": "My (LK)" },
+    { "id": "bill",           "url": "https://bill.vdsina.com/",          "category": "infra",  "label": "Billing" },
+    { "id": "support",        "url": "https://support.vdsina.com/",       "category": "infra",  "label": "Support" },
+    { "id": "status",         "url": "https://status.vdsina.com/",        "category": "infra",  "label": "Status (Official)" },
+    { "id": "docs",           "url": "https://docs.vdsina.com/",          "category": "infra",  "label": "Docs" },
+    { "id": "auth",           "url": "https://auth.vdsina.com/",          "category": "infra",  "label": "Auth" },
+    { "id": "www",            "url": "https://www.vdsina.com/",           "category": "site",   "label": "WWW (Main)" },
+    { "id": "vdsina-ru",      "url": "https://vdsina.ru/",               "category": "site",   "label": "VDSina.ru" },
+    { "id": "panel-ru",       "url": "https://panel.vdsina.ru/",         "category": "panel",  "label": "Panel .ru" },
+    { "id": "my-ru",          "url": "https://my.vdsina.ru/",            "category": "panel",  "label": "My .ru" },
+    { "id": "api-ru",         "url": "https://api.vdsina.ru/",           "category": "api",    "label": "API .ru" }
+  ],
+  "dnsChecks": [
+    "api.vdsina.com",
+    "panel.vdsina.com",
+    "my.vdsina.com",
+    "cp.vdsina.com",
+    "bill.vdsina.com",
+    "support.vdsina.com",
+    "status.vdsina.com",
+    "docs.vdsina.com",
+    "auth.vdsina.com",
+    "vdsina.com"
+  ],
+  "dcMapping": {
+    "dc2_dead": ["89.110.64-127", "212.34.128-155", "94.103.80-95"],
+    "dc3_recovering": ["46.151.24-31", "109.107.164-187", "91.201.0-15", "77.246.100-107", "89.124.64-127"],
+    "dc1_mixed": ["5.35.32-95", "77.238.224-255"]
+  },
+  "sampleIPs": {
+    "dc2": ["89.110.70.1", "89.110.100.1", "212.34.140.1", "94.103.88.1"],
+    "dc3": ["46.151.26.1", "109.107.170.1", "89.124.94.90", "77.246.102.1"],
+    "mixed": ["5.35.40.1", "77.238.239.1"]
+  }
+}
