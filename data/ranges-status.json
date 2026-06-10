@@ -1236,13 +1236,13 @@
       },
       {
         "ip": "46.149.79.50",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15"
+        "alive": false,
+        "banner": ""
       }
     ],
-    "alive": 6,
+    "alive": 5,
     "total": 8,
-    "percent": 75,
+    "percent": 63,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_7.4",
     "status": "ALIVE"
