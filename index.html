@@ -330,7 +330,16 @@ function dv(label,a,b){
 function renderDeltas(h){
   const n=h[h.length-1];if(!n)return;
   const h1=h.length>12?h[h.length-13]:h[0],h24=h.length>288?h[h.length-289]:h[0];
-  const fmt=(p,c,el)=>{const parts=[dv('Эндпоинты',p.up,c.up),dv('DNS',p.dns,c.dns),dv('BGP',p.bgpV4,c.bgpV4),dv('Диапазоны',p.rangesAlive,c.rangesAlive)].filter(Boolean);el.innerHTML=parts.length?parts.join('<br>'):'<span class="c-m">Без изменений</span>';};
+  const fmt=(p,c,el)=>{const parts=[
+    dv('Эндпоинты',p.up,c.up),
+    dv('DNS',p.dns,c.dns),
+    dv('BGP',p.bgpV4,c.bgpV4),
+    dv('Живых',p.alive,c.alive),
+    dv('Частично',p.partial,c.partial),
+    dv('Мёртвых',p.dead,c.dead),
+    dv('DC2',p.dc2a,c.dc2a),
+    dv('DC3',p.dc3a,c.dc3a),
+  ].filter(Boolean);el.innerHTML=parts.length?parts.join('<br>'):'<span class="c-m">Без изменений</span>';};
   fmt(h1,n,document.getElementById('delta1hContent'));
   fmt(h24,n,document.getElementById('delta24hContent'));
 }

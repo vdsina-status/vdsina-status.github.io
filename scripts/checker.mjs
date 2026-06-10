@@ -492,6 +492,8 @@ async function main() {
   // History
   let history = [];
   try { history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8')); } catch {}
+  const dc2r = rangeStatus?.filter(r => r.dc?.startsWith('DC2')) || [];
+  const dc3r = rangeStatus?.filter(r => r.dc?.startsWith('DC3')) || [];
   history.push({
     t: now(),
     up: upCount,
@@ -499,7 +501,14 @@ async function main() {
     dns: dnsUp,
     bgpV4: bgp.v4Prefixes,
     rangesAlive: status.summary.rangesAlive,
-    rangesTotal: status.summary.rangesTotal
+    rangesTotal: status.summary.rangesTotal,
+    alive: rangeStatus?.filter(r => r.status === 'ALIVE').length || 0,
+    partial: rangeStatus?.filter(r => r.status === 'PARTIAL').length || 0,
+    dead: rangeStatus?.filter(r => r.status === 'DEAD').length || 0,
+    dc2a: dc2r.filter(r => r.status !== 'DEAD').length,
+    dc2t: dc2r.length,
+    dc3a: dc3r.filter(r => r.status !== 'DEAD').length,
+    dc3t: dc3r.length
   });
   if (history.length > 8640) history = history.slice(-8640);
   fs.writeFileSync(HISTORY_FILE, JSON.stringify(history));
