@@ -55,9 +55,11 @@ td.u{color:var(--c);font-family:'JetBrains Mono',monospace;font-size:11.5px;word
 .tt{font-weight:700;margin-bottom:3px}
 .tx{color:var(--muted);line-height:1.5}
 canvas{width:100%;height:160px;margin-top:10px}
-.timer{font-size:36px;font-weight:800;letter-spacing:-.03em;text-align:center;padding:12px 0}
+.timer{display:flex;align-items:center;justify-content:center;gap:8px;font-size:36px;font-weight:800;letter-spacing:-.03em;text-align:center;padding:12px 0;flex-wrap:wrap}
+.timer .seg{display:inline-flex;align-items:baseline;gap:2px}
 .timer .d{color:var(--r)}.timer .h{color:var(--o)}.timer .m{color:var(--y)}.timer .s{color:var(--muted)}
-.timer .label{font-size:10px;display:block;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.timer .label{font-size:12px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-right:12px}
+.timer .sep{color:var(--border);font-weight:400;margin:0 2px}
 .lookup{margin-top:14px}
 .lookup input{width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text);font-size:14px;font-family:inherit;outline:none}
 .lookup input:focus{border-color:var(--b)}
@@ -214,10 +216,13 @@ function updateTimer(){
   const mins=Math.floor(d%36e5/6e4);
   const secs=Math.floor(d%6e4/1e3);
   document.getElementById('timer').innerHTML=
-    `<span class="d">${days}<span class="label">дн</span></span> `+
-    `<span class="h">${String(hrs).padStart(2,'0')}<span class="label">ч</span></span> `+
-    `<span class="m">${String(mins).padStart(2,'0')}<span class="label">мин</span></span> `+
-    `<span class="s">${String(secs).padStart(2,'0')}<span class="label">сек</span></span>`;
+    `<span class="seg"><span class="d">${days}</span><span class="label">дн</span></span>`+
+    `<span class="sep">:</span>`+
+    `<span class="seg"><span class="h">${String(hrs).padStart(2,'0')}</span><span class="label">ч</span></span>`+
+    `<span class="sep">:</span>`+
+    `<span class="seg"><span class="m">${String(mins).padStart(2,'0')}</span><span class="label">мин</span></span>`+
+    `<span class="sep">:</span>`+
+    `<span class="seg"><span class="s">${String(secs).padStart(2,'0')}</span><span class="label">сек</span></span>`;
 }
 
 function badge(up,code,err){
