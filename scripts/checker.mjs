@@ -425,6 +425,66 @@ async function main() {
     console.log('  No changes.');
   }
 
+  // Periodic summary every 6 hours
+  const SUMMARY_FILE = path.join(DATA, 'last-summary.json');
+  let lastSummary = 0;
+  try { lastSummary = JSON.parse(fs.readFileSync(SUMMARY_FILE, 'utf8')).t || 0; } catch {}
+  const hoursSince = (Date.now() - lastSummary) / 3600000;
+  if (hoursSince >= 6) {
+    console.log(`  📊 Sending 6h periodic summary (last: ${hoursSince.toFixed(1)}h ago)...`);
+    const incMs = Date.now() - new Date(CONFIG.incidentStart).getTime();
+    const days = Math.floor(incMs / 864e5);
+    const hrs = Math.floor(incMs % 864e5 / 36e5);
+
+    // Compute deltas from history
+    let h6ago = null, h24ago = null;
+    let hist = [];
+    try { hist = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8')); } catch {}
+    const h6idx = hist.length > 72 ? hist.length - 73 : 0;
+    const h24idx = hist.length > 288 ? hist.length - 289 : 0;
+    h6ago = hist[h6idx] || null;
+    h24ago = hist[h24idx] || null;
+    const latest = hist[hist.length - 1] || {};
+
+    const d = (label, prev, curr) => {
+      if (prev === undefined || curr === undefined) return '';
+      const diff = curr - prev;
+      if (diff === 0) return `${label}: ${curr} (=)`;
+      return `${label}: ${prev}→${curr} (${diff > 0 ? '+' : ''}${diff})`;
+    };
+
+    const dc2a = rangeStatus?.filter(r => r.dc?.startsWith('DC2') && r.status !== 'DEAD').length || 0;
+    const dc2t = rangeStatus?.filter(r => r.dc?.startsWith('DC2')).length || 0;
+    const dc3a = rangeStatus?.filter(r => r.dc?.startsWith('DC3') && r.status !== 'DEAD').length || 0;
+    const dc3t = rangeStatus?.filter(r => r.dc?.startsWith('DC3')).length || 0;
+
+    let summary = `<b>📊 VDSina — сводка каждые 6ч</b>\n`;
+    summary += `<i>${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}</i>\n\n`;
+    summary += `⏱ Инцидент: <b>${days}д ${hrs}ч</b>\n\n`;
+    summary += `🌐 Эндпоинты: <b>${upCount}/${endpoints.length}</b> UP\n`;
+    summary += `📡 DNS: <b>${dnsUp}/${dnsResults.length}</b>\n`;
+    summary += `📊 BGP v4: <b>${bgp.v4Prefixes}</b> pfx\n`;
+    summary += `📡 Диапазоны: <b>${status.summary.rangesAlive}/${status.summary.rangesTotal}</b>\n`;
+    summary += `🔴 DC2: ${dc2a}/${dc2t} живых | 🟡 DC3: ${dc3a}/${dc3t} живых\n`;
+
+    if (h6ago) {
+      summary += `\n<b>Δ за 6ч:</b> `;
+      summary += [d('UP', h6ago.up, latest.up), d('DNS', h6ago.dns, latest.dns), d('BGP', h6ago.bgpV4, latest.bgpV4), d('Ranges', h6ago.rangesAlive, latest.rangesAlive)].filter(Boolean).join(' · ');
+    }
+    if (h24ago) {
+      summary += `\n<b>Δ за 24ч:</b> `;
+      summary += [d('UP', h24ago.up, latest.up), d('DNS', h24ago.dns, latest.dns), d('BGP', h24ago.bgpV4, latest.bgpV4), d('Ranges', h24ago.rangesAlive, latest.rangesAlive)].filter(Boolean).join(' · ');
+    }
+
+    const cpTitle = cpContent.updates?.find(u => u.type === 'title');
+    if (cpTitle) summary += `\n\n📋 cp.vdsina.com: <i>${cpTitle.text}</i>`;
+
+    summary += `\n\n🌐 https://vdsina-status.github.io`;
+    await sendTelegram(summary);
+    fs.writeFileSync(SUMMARY_FILE, JSON.stringify({ t: Date.now() }));
+    console.log('  Summary sent.');
+  }
+
   // Save
   fs.writeFileSync(STATUS_FILE, JSON.stringify(status, null, 2));
   fs.writeFileSync(CP_CONTENT_FILE, JSON.stringify(cpContent, null, 2));
