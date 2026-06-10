@@ -79,7 +79,7 @@ async function checkBGP(asn) {
   const asnNum = asn.replace(/^AS/i, '');
   try {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 15000);
+    const timer = setTimeout(() => controller.abort(), 30000);
     const resp = await fetch(
       `https://stat.ripe.net/data/routing-status/data.json?resource=AS${asnNum}`,
       { signal: controller.signal }
@@ -117,7 +117,7 @@ function sshBannerCheck(ip, timeoutMs = SSH_TIMEOUT) {
 async function fetchPrefixes() {
   try {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 15000);
+    const timer = setTimeout(() => controller.abort(), 30000);
     const resp = await fetch(
       'https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS216071',
       { signal: controller.signal }

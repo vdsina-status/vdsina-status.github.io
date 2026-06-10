@@ -965,8 +965,8 @@
     "probes": [
       {
         "ip": "78.40.194.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "78.40.194.10",
@@ -984,11 +984,11 @@
         "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       }
     ],
-    "alive": 3,
+    "alive": 2,
     "total": 4,
-    "percent": 75,
+    "percent": 50,
     "dc": "DC3",
-    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11",
+    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
     "status": "PARTIAL"
   },
   {
@@ -1135,13 +1135,13 @@
       },
       {
         "ip": "89.124.75.50",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "89.124.75.100",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
       }
     ],
     "alive": 3,
@@ -1162,8 +1162,8 @@
       },
       {
         "ip": "91.201.113.10",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "91.201.113.50",
@@ -1176,12 +1176,12 @@
         "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
       }
     ],
-    "alive": 3,
+    "alive": 4,
     "total": 4,
-    "percent": 75,
+    "percent": 100,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16",
-    "status": "PARTIAL"
+    "status": "ALIVE"
   },
   {
     "range": "91.246.x.x",
@@ -1295,8 +1295,8 @@
       },
       {
         "ip": "94.103.95.50",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "94.103.95.100",
@@ -1304,9 +1304,9 @@
         "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       }
     ],
-    "alive": 3,
+    "alive": 2,
     "total": 4,
-    "percent": 75,
+    "percent": 50,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11",
     "status": "PARTIAL"
