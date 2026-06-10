@@ -10,12 +10,18 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: status-check
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v4
         with:
@@ -24,10 +30,12 @@ jobs:
       - name: Run status check
         run: node scripts/checker.mjs
 
-      - name: Commit updated data
+      - name: Commit and push
         run: |
           git config user.name "VDSina Status Bot"
           git config user.email "bot@vdsina-status.github.io"
           git add data/
-          git diff --cached --quiet || git commit -m "status: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "status: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git pull --rebase origin main || true
           git push
