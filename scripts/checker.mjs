@@ -25,11 +25,11 @@ const now = () => new Date().toISOString();
 // Folk DC mapping — based on community reports from t.me/vdsina_chat
 const FOLK_DC_MAP = {
   dc2_dead:  ['89.110','212.34','91.84','94.103','77.238','87.199','195.63','80.85','77.105',
-              '141.163','144.124','146.103','178.130','178.217','185.121','185.157','185.21',
+              '141.163','144.124','178.130','178.217','185.121','185.157','185.21',
               '185.245','193.178','194.164','194.246','194.60','195.200','195.26','212.111',
               '91.246','93.183','5.35'],
   dc3_alive: ['109.107','109.234','46.151','46.149','77.246','89.124','91.201','78.40',
-              '88.210','62.84','212.118','195.2','193.33','94.103']
+              '88.210','62.84','212.118','195.2','193.33','94.103','146.103']
 };
 
 // ─── HTTP check ──────────────────────────────────────────────
@@ -159,28 +159,36 @@ async function scanRanges() {
   for (let i = 0; i < sortedKeys.length; i += 10) {
     const batch = sortedKeys.slice(i, i + 10);
     const batchPromises = batch.map(async key => {
-      const firstPfx = groups[key][0];
-      const base = firstPfx.replace(/\/\d+$/, '').split('.');
+      const pfxList = groups[key];
+      // Pick up to 3 subnets: first, middle, last
+      const pickIdx = [0];
+      if (pfxList.length > 2) pickIdx.push(Math.floor(pfxList.length / 2));
+      if (pfxList.length > 1) pickIdx.push(pfxList.length - 1);
+      const subnets = [...new Set(pickIdx)].map(i => pfxList[i].replace(/\/\d+$/, '').split('.'));
 
-      const probes = PROBE_OFFSETS.map(off =>
-        sshBannerCheck(`${base[0]}.${base[1]}.${base[2]}.${off}`)
-      );
-      const checks = await Promise.all(probes);
+      const probeIPs = [];
+      for (const base of subnets) {
+        for (const off of [5, 50]) {
+          probeIPs.push(`${base[0]}.${base[1]}.${base[2]}.${off}`);
+        }
+      }
+
+      const checks = await Promise.all(probeIPs.map(ip => sshBannerCheck(ip)));
       const alive = checks.filter(c => c.alive).length;
       const banners = checks.filter(c => c.banner).map(c => c.banner);
 
       return {
         range: `${key}.x.x`,
-        prefixCount: groups[key].length,
-        probes: PROBE_OFFSETS.map((off, idx) => ({
-          ip: `${base[0]}.${base[1]}.${base[2]}.${off}`,
+        prefixCount: pfxList.length,
+        probes: probeIPs.map((ip, idx) => ({
+          ip,
           alive: checks[idx].alive,
           banner: checks[idx].banner
         })),
         alive,
-        total: PROBE_OFFSETS.length,
-        percent: Math.round(alive / PROBE_OFFSETS.length * 100),
-        dc: classifyDC(key, alive, PROBE_OFFSETS.length),
+        total: probeIPs.length,
+        percent: Math.round(alive / probeIPs.length * 100),
+        dc: classifyDC(key, alive, probeIPs.length),
         banner: banners[0] || '',
         status: alive === 0 ? 'DEAD' : alive < PROBE_OFFSETS.length ? 'PARTIAL' : 'ALIVE'
       };
