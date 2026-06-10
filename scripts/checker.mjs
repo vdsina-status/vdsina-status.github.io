@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import net from 'net';
 import crypto from 'crypto';
-import dns from 'dns/promises';
+import dnsLib from 'dns/promises';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -17,7 +17,7 @@ const CP_CONTENT_FILE = path.join(DATA, 'cp-content.json');
 const CP_SNAPSHOTS_DIR = path.join(DATA, 'snapshots');
 const RANGES_FILE = path.join(DATA, 'ranges-status.json');
 
-const TIMEOUT_MS = 10000;
+const TIMEOUT_MS = 16000;
 const SSH_TIMEOUT = 5000;
 const PROBE_OFFSETS = [5, 10, 50, 100];
 const now = () => new Date().toISOString();
@@ -67,7 +67,7 @@ async function checkEndpoint(ep) {
 // ─── DNS check (cross-platform via Node.js dns) ─────────────
 async function checkDNS(domain) {
   try {
-    const result = await dns.resolve4(domain);
+    const result = await dnsLib.resolve4(domain);
     return { domain, resolved: true, ips: result, error: null };
   } catch (err) {
     return { domain, resolved: false, ips: [], error: err.code || 'NXDOMAIN' };
@@ -356,7 +356,7 @@ async function main() {
   console.log('  [2/6] DNS...');
   const dnsResults = await Promise.all(CONFIG.dnsChecks.map(checkDNS));
   const dnsUp = dnsResults.filter(d => d.resolved).length;
-  console.log(`    ${dnsUp}/${dns.length} resolved`);
+  console.log(`    ${dnsUp}/${dnsResults.length} resolved`);
 
   // 3. BGP
   console.log('  [3/6] BGP...');

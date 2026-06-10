@@ -1061,8 +1061,8 @@
     "probes": [
       {
         "ip": "88.210.13.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "88.210.13.10",
@@ -1080,11 +1080,11 @@
         "banner": "SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3"
       }
     ],
-    "alive": 2,
+    "alive": 1,
     "total": 4,
-    "percent": 50,
+    "percent": 25,
     "dc": "DC3",
-    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
+    "banner": "SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3",
     "status": "PARTIAL"
   },
   {
