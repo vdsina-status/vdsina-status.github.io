@@ -1218,13 +1218,13 @@
       },
       {
         "ip": "77.246.97.50",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u1"
       }
     ],
-    "alive": 2,
+    "alive": 3,
     "total": 6,
-    "percent": 33,
+    "percent": 50,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
     "status": "PARTIAL"
