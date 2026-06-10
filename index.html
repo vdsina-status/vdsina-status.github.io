@@ -256,7 +256,7 @@ function render(data){
     `<div class="sc"><div class="n red">${s.endpointsTotal-s.endpointsUp}</div><div class="l">DOWN</div></div>`+
     `<div class="sc"><div class="n ${s.dnsResolved>5?'grn':'ylw'}">${s.dnsResolved}/${s.dnsTotal}</div><div class="l">DNS</div></div>`+
     `<div class="sc"><div class="n blu">${s.bgpV4Prefixes}</div><div class="l">BGP v4 pfx</div></div>`+
-    `<div class="sc"><div class="n cyn">${s.bgpV6Prefixes}</div><div class="l">BGP v6 pfx</div></div>`+
+    `<div class="sc"><div class="n ${(s.rangesAlive||0)>20?'grn':'ylw'}">${s.rangesAlive||'?'}/${s.rangesTotal||'?'}</div><div class="l">Диапазонов живы</div></div>`+
     `<div class="sc"><div class="n red">${daysSince}</div><div class="l">Дней инцидента</div></div>`;
 
   // Incident box
@@ -299,17 +299,43 @@ function render(data){
   // Range status
   const ranges=data.rangeStatus||[];
   if(ranges.length){
-    const rAlive=ranges.filter(r=>r.alive).length;
-    const rDead=ranges.filter(r=>!r.alive).length;
+    const rAlive=ranges.filter(r=>r.status==='ALIVE').length;
+    const rPartial=ranges.filter(r=>r.status==='PARTIAL').length;
+    const rDead=ranges.filter(r=>r.status==='DEAD').length;
     const totalPfx=ranges.reduce((s,r)=>s+r.prefixCount,0);
-    const alivePfx=ranges.filter(r=>r.alive).reduce((s,r)=>s+r.prefixCount,0);
+    const alivePfx=ranges.filter(r=>r.status!=='DEAD').reduce((s,r)=>s+r.prefixCount,0);
+
+    const dc2=ranges.filter(r=>(r.dc||'').startsWith('DC2'));
+    const dc3=ranges.filter(r=>(r.dc||'').startsWith('DC3'));
+    const dc2alive=dc2.filter(r=>r.status!=='DEAD').length;
+    const dc3alive=dc3.filter(r=>r.status!=='DEAD').length;
+
     document.getElementById('rangeSummary').innerHTML=
-      `<b style="color:var(--g)">${rAlive}</b> диапазонов живы · <b style="color:var(--r)">${rDead}</b> мертвы · Префиксов: <b style="color:var(--g)">${alivePfx}</b> живых / <b>${totalPfx}</b> всего`;
+      `<b style="color:var(--g)">${rAlive}</b> живы · <b style="color:var(--y)">${rPartial}</b> частично · <b style="color:var(--r)">${rDead}</b> мертвы`+
+      ` · Префиксов: <b style="color:var(--g)">${alivePfx}</b>/<b>${totalPfx}</b>`+
+      `<br><span style="color:var(--r)">DC2: ${dc2alive}/${dc2.length} живых</span>`+
+      ` · <span style="color:var(--y)">DC3: ${dc3alive}/${dc3.length} живых</span>`;
+
     let rgHtml='';
-    for(const r of ranges.sort((a,b)=>a.range.localeCompare(b.range))){
-      const cls=r.alive?'on':'off';
-      const tip=r.alive?`${r.banner}`:`DEAD — нет SSH-баннера`;
-      rgHtml+=`<div class="pc ${cls}" title="${tip}"><div class="dt"></div>${r.range} <span style="font-size:10px;color:var(--muted)">(${r.prefixCount})</span></div>`;
+    const sorted=[...ranges].sort((a,b)=>{
+      const dca=(a.dc||'').startsWith('DC2')?0:(a.dc||'').startsWith('DC3')?1:2;
+      const dcb=(b.dc||'').startsWith('DC2')?0:(b.dc||'').startsWith('DC3')?1:2;
+      return dca-dcb||a.range.localeCompare(b.range);
+    });
+    let lastDc='';
+    for(const r of sorted){
+      const dcGroup=(r.dc||'').split(' ')[0]||'?';
+      if(dcGroup!==lastDc){
+        if(lastDc)rgHtml+=`<div style="width:100%;height:1px;background:var(--border);margin:4px 0"></div>`;
+        rgHtml+=`<div style="width:100%;font-size:11px;color:var(--muted);font-weight:700;padding:4px 0">${dcGroup}</div>`;
+        lastDc=dcGroup;
+      }
+      const cls=r.status==='ALIVE'?'on':r.status==='PARTIAL'?'on':'off';
+      const pct=r.percent!==undefined?` ${r.percent}%`:'';
+      const probeDetail=r.probes?r.probes.map(p=>`${p.ip}: ${p.alive?'✓':'✗'}`).join(', '):'';
+      const tip=`${r.dc} | ${r.alive||0}/${r.total||1} SSH alive${r.banner?' | '+r.banner:''}${probeDetail?'\n'+probeDetail:''}`;
+      const border=r.status==='PARTIAL'?'border-color:rgba(245,158,11,.4);background:var(--ybg)':'';
+      rgHtml+=`<div class="pc ${cls}" title="${tip}" style="${border}"><div class="dt"></div>${r.range} <span style="font-size:10px;color:var(--muted)">(${r.prefixCount})${pct}</span></div>`;
     }
     document.getElementById('rangeGrid').innerHTML=rgHtml;
   }

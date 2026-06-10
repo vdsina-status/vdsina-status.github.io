@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import net from 'net';
+import crypto from 'crypto';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -12,9 +14,23 @@ const DRY_RUN = process.argv.includes('--dry-run');
 const STATUS_FILE = path.join(DATA, 'status.json');
 const HISTORY_FILE = path.join(DATA, 'history.json');
 const CP_CONTENT_FILE = path.join(DATA, 'cp-content.json');
+const CP_SNAPSHOTS_DIR = path.join(DATA, 'snapshots');
+const RANGES_FILE = path.join(DATA, 'ranges-status.json');
 
 const TIMEOUT_MS = 10000;
+const SSH_TIMEOUT = 5000;
+const PROBE_OFFSETS = [5, 10, 50, 100];
 const now = () => new Date().toISOString();
+
+// Folk DC mapping — based on community reports from t.me/vdsina_chat
+const FOLK_DC_MAP = {
+  dc2_dead:  ['89.110','212.34','91.84','94.103','77.238','87.199','195.63','80.85','77.105',
+              '141.163','144.124','146.103','178.130','178.217','185.121','185.157','185.21',
+              '185.245','193.178','194.164','194.246','194.60','195.200','195.26','212.111',
+              '91.246','93.183','5.35'],
+  dc3_alive: ['109.107','109.234','46.151','46.149','77.246','89.124','91.201','78.40',
+              '88.210','62.84','212.118','195.2','193.33','94.103']
+};
 
 // ─── HTTP check ──────────────────────────────────────────────
 async function checkEndpoint(ep) {
@@ -29,35 +45,21 @@ async function checkEndpoint(ep) {
     });
     clearTimeout(timer);
     const elapsed = Date.now() - start;
-    const status = resp.status;
     let bodySnippet = '';
     try { bodySnippet = (await resp.text()).slice(0, 500); } catch {}
     return {
-      id: ep.id,
-      url: ep.url,
-      label: ep.label,
-      category: ep.category,
-      httpCode: status,
-      responseMs: elapsed,
-      up: status >= 200 && status < 400,
+      id: ep.id, url: ep.url, label: ep.label, category: ep.category,
+      httpCode: resp.status, responseMs: elapsed,
+      up: resp.status >= 200 && resp.status < 400,
       redirect: resp.headers.get('location') || null,
-      bodySnippet,
-      error: null,
-      checkedAt: now()
+      bodySnippet, error: null, checkedAt: now()
     };
   } catch (err) {
     return {
-      id: ep.id,
-      url: ep.url,
-      label: ep.label,
-      category: ep.category,
-      httpCode: 0,
-      responseMs: Date.now() - start,
-      up: false,
-      redirect: null,
-      bodySnippet: '',
-      error: err.code || err.message || 'unknown',
-      checkedAt: now()
+      id: ep.id, url: ep.url, label: ep.label, category: ep.category,
+      httpCode: 0, responseMs: Date.now() - start, up: false,
+      redirect: null, bodySnippet: '',
+      error: err.code || err.message || 'unknown', checkedAt: now()
     };
   }
 }
@@ -67,12 +69,12 @@ function checkDNS(domain) {
   try {
     const out = execSync(
       `powershell -NoProfile -Command "Resolve-DnsName '${domain}' -Type A -ErrorAction Stop | Where-Object { $_.Type -eq 'A' } | Select-Object -ExpandProperty IPAddress"`,
-      { timeout: 8000, encoding: 'utf8' }
+      { timeout: 8000, encoding: 'utf8', stdio: ['pipe','pipe','pipe'] }
     ).trim();
     const ips = out.split(/\r?\n/).filter(Boolean);
     return { domain, resolved: true, ips, error: null };
   } catch {
-    return { domain, resolved: false, ips: [], error: 'NXDOMAIN or timeout' };
+    return { domain, resolved: false, ips: [], error: 'NXDOMAIN' };
   }
 }
 
@@ -96,18 +98,15 @@ async function checkBGP(asn) {
       v4Ips: d.announced_space?.v4?.ips || 0,
       visibility: d.visibility?.v4?.ris_peers_seeing || 0,
       totalPeers: d.visibility?.v4?.total_ris_peers || 0,
-      checkedAt: now(),
-      error: null
+      checkedAt: now(), error: null
     };
   } catch (err) {
     return { asn, v4Prefixes: 0, v6Prefixes: 0, v4Ips: 0, visibility: 0, totalPeers: 0, checkedAt: now(), error: err.message };
   }
 }
 
-// ─── SSH banner check (real VM alive detection) ─────────────
-import net from 'net';
-
-function sshBannerCheck(ip, timeoutMs = 5000) {
+// ─── SSH banner check ────────────────────────────────────────
+function sshBannerCheck(ip, timeoutMs = SSH_TIMEOUT) {
   return new Promise(resolve => {
     const sock = net.createConnection({ host: ip, port: 22 });
     let banner = '';
@@ -118,78 +117,85 @@ function sshBannerCheck(ip, timeoutMs = 5000) {
   });
 }
 
-async function checkRanges() {
-  const RANGE_FILE = path.join(DATA, 'ranges-status.json');
-  let rangeConfig;
-  try { rangeConfig = JSON.parse(fs.readFileSync(RANGE_FILE, 'utf8')); } catch { return null; }
-  
-  const probeIPs = rangeConfig.map(r => {
-    const base = r.firstPrefix.replace(/\/\d+$/, '');
-    const oct = base.split('.');
-    return { range: r.range, prefixCount: r.prefixCount, ip: `${oct[0]}.${oct[1]}.${oct[2]}.5` };
-  });
-  
-  const BATCH = 10;
+// ─── Extended range scan ─────────────────────────────────────
+async function fetchPrefixes() {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
+    const resp = await fetch(
+      'https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS216071',
+      { signal: controller.signal }
+    );
+    clearTimeout(timer);
+    const json = await resp.json();
+    return json.data?.prefixes?.map(p => p.prefix) || [];
+  } catch { return []; }
+}
+
+function classifyDC(rangeKey, alive, total) {
+  for (const key of FOLK_DC_MAP.dc3_alive) {
+    if (rangeKey.startsWith(key)) return alive > 0 ? 'DC3' : 'DC3 (down)';
+  }
+  for (const key of FOLK_DC_MAP.dc2_dead) {
+    if (rangeKey.startsWith(key)) return alive > 0 ? 'DC2 (partial)' : 'DC2';
+  }
+  if (alive === total) return 'OK';
+  if (alive > 0) return 'partial';
+  return 'unknown';
+}
+
+async function scanRanges() {
+  const prefixes = await fetchPrefixes();
+  if (!prefixes.length) return null;
+
+  const groups = {};
+  for (const pfx of prefixes) {
+    const m = pfx.match(/^(\d+\.\d+)\./);
+    if (m) {
+      if (!groups[m[1]]) groups[m[1]] = [];
+      groups[m[1]].push(pfx);
+    }
+  }
+
   const results = [];
-  for (let i = 0; i < probeIPs.length; i += BATCH) {
-    const batch = probeIPs.slice(i, i + BATCH);
-    const checks = await Promise.all(batch.map(p => sshBannerCheck(p.ip)));
-    for (let j = 0; j < batch.length; j++) {
-      results.push({
-        range: batch[j].range,
-        prefixCount: batch[j].prefixCount,
-        ip: batch[j].ip,
-        alive: checks[j].alive,
-        banner: checks[j].banner,
-        status: checks[j].alive ? 'ALIVE' : 'DEAD'
-      });
-    }
+  const sortedKeys = Object.keys(groups).sort();
+
+  for (let i = 0; i < sortedKeys.length; i += 10) {
+    const batch = sortedKeys.slice(i, i + 10);
+    const batchPromises = batch.map(async key => {
+      const firstPfx = groups[key][0];
+      const base = firstPfx.replace(/\/\d+$/, '').split('.');
+
+      const probes = PROBE_OFFSETS.map(off =>
+        sshBannerCheck(`${base[0]}.${base[1]}.${base[2]}.${off}`)
+      );
+      const checks = await Promise.all(probes);
+      const alive = checks.filter(c => c.alive).length;
+      const banners = checks.filter(c => c.banner).map(c => c.banner);
+
+      return {
+        range: `${key}.x.x`,
+        prefixCount: groups[key].length,
+        probes: PROBE_OFFSETS.map((off, idx) => ({
+          ip: `${base[0]}.${base[1]}.${base[2]}.${off}`,
+          alive: checks[idx].alive,
+          banner: checks[idx].banner
+        })),
+        alive,
+        total: PROBE_OFFSETS.length,
+        percent: Math.round(alive / PROBE_OFFSETS.length * 100),
+        dc: classifyDC(key, alive, PROBE_OFFSETS.length),
+        banner: banners[0] || '',
+        status: alive === 0 ? 'DEAD' : alive < PROBE_OFFSETS.length ? 'PARTIAL' : 'ALIVE'
+      };
+    });
+    results.push(...await Promise.all(batchPromises));
   }
+
   return results;
 }
 
-function checkDCHealth() {
-  const results = {};
-  for (const [dc, ips] of Object.entries(CONFIG.sampleIPs)) {
-    results[dc] = {};
-    for (const ip of ips) {
-      try {
-        const out = execSync(
-          `powershell -NoProfile -Command "$tcp=New-Object Net.Sockets.TcpClient;$ar=$tcp.BeginConnect('${ip}',22,$null,$null);$ok=$ar.AsyncWaitHandle.WaitOne(4000,$false);if($ok-and$tcp.Connected){$s=$tcp.GetStream();$s.ReadTimeout=3000;$b=New-Object byte[] 64;try{$n=$s.Read($b,0,64);Write-Host([Text.Encoding]::ASCII.GetString($b,0,$n).Trim())}catch{Write-Host 'NO_BANNER'}};$tcp.Close()"`,
-          { timeout: 10000, encoding: 'utf8' }
-        ).trim();
-        results[dc][ip] = out.startsWith('SSH-');
-      } catch {
-        results[dc][ip] = false;
-      }
-    }
-  }
-  return results;
-}
-
-// ─── cp.vdsina.com content parser ────────────────────────────
-function parseCpContent(bodySnippet, fullBody) {
-  const html = fullBody || bodySnippet;
-  const result = { raw: '', updates: [], lastParsed: now() };
-
-  const translationsMatch = html.match(/const\s+translations\s*=\s*(\{[\s\S]*?\});\s*\n\s*function/);
-  if (translationsMatch) {
-    try {
-      const transStr = translationsMatch[1];
-      const ruTitleMatch = transStr.match(/title:\s*['"]([^'"]+?серверы[^'"]*?запущены[^'"]*?)['"]/i)
-        || transStr.match(/title:\s*['"]([^'"]+?)['"]/);
-      const ruTextMatch = transStr.match(/text:\s*['"]([^'"]{50,}?)['"]/);
-      if (ruTitleMatch) result.updates.push({ type: 'title', text: ruTitleMatch[1] });
-      if (ruTextMatch) result.updates.push({ type: 'detail', text: ruTextMatch[1] });
-    } catch {}
-  }
-
-  const titleMatch = html.match(/<title[^>]*>([^<]+)/i);
-  if (titleMatch) result.raw = titleMatch[1].trim();
-
-  return result;
-}
-
+// ─── cp.vdsina.com parser + snapshot ─────────────────────────
 async function fetchCpFullBody() {
   try {
     const controller = new AbortController();
@@ -200,12 +206,49 @@ async function fetchCpFullBody() {
     });
     clearTimeout(timer);
     return await resp.text();
-  } catch {
-    return '';
-  }
+  } catch { return ''; }
 }
 
-// ─── Telegram notification ───────────────────────────────────
+function parseCpContent(html) {
+  const result = { raw: '', updates: [], hash: '', lastParsed: now() };
+  if (!html) return result;
+
+  result.hash = crypto.createHash('sha256').update(html).digest('hex').slice(0, 16);
+
+  const titleMatch = html.match(/<title[^>]*>([^<]+)/i);
+  if (titleMatch) result.raw = titleMatch[1].trim();
+
+  const transMatch = html.match(/const\s+translations\s*=\s*(\{[\s\S]*?\});\s*\n\s*function/);
+  if (transMatch) {
+    try {
+      const t = transMatch[1];
+      const allTitles = [...t.matchAll(/title:\s*'([^']{10,})'/g)];
+      const allTexts = [...t.matchAll(/text:\s*'([^']{50,})'/g)];
+      for (const m of allTitles) result.updates.push({ type: 'title', text: m[1] });
+      for (const m of allTexts) result.updates.push({ type: 'detail', text: m[1] });
+    } catch {}
+  }
+
+  return result;
+}
+
+function saveCpSnapshot(html, hash) {
+  if (!html || !hash) return;
+  try {
+    fs.mkdirSync(CP_SNAPSHOTS_DIR, { recursive: true });
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const file = path.join(CP_SNAPSHOTS_DIR, `cp-${ts}-${hash}.html`);
+    const existing = fs.readdirSync(CP_SNAPSHOTS_DIR).filter(f => f.includes(hash));
+    if (existing.length === 0) {
+      fs.writeFileSync(file, html);
+      console.log(`  Snapshot saved: cp-${ts}-${hash}.html`);
+      return true;
+    }
+  } catch (err) { console.error('  Snapshot save error:', err.message); }
+  return false;
+}
+
+// ─── Telegram ────────────────────────────────────────────────
 async function sendTelegram(text) {
   if (DRY_RUN) { console.log('[DRY-RUN TG]', text); return; }
   const { botToken, chatId } = CONFIG.telegram;
@@ -213,195 +256,173 @@ async function sendTelegram(text) {
     await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text,
-        parse_mode: 'HTML',
-        disable_web_page_preview: true
-      })
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML', disable_web_page_preview: true })
     });
-  } catch (err) {
-    console.error('Telegram send failed:', err.message);
-  }
+  } catch (err) { console.error('Telegram send failed:', err.message); }
 }
 
-// ─── Diff detection ─────────────────────────────────────────
+// ─── Change detection ────────────────────────────────────────
 function detectChanges(prev, curr) {
   const changes = [];
-  if (!prev || !prev.endpoints) return changes;
-
+  if (!prev?.endpoints) return changes;
   const prevMap = {};
-  for (const e of (prev.endpoints || [])) prevMap[e.id] = e;
-
-  for (const e of (curr.endpoints || [])) {
+  for (const e of prev.endpoints) prevMap[e.id] = e;
+  for (const e of curr.endpoints) {
     const p = prevMap[e.id];
-    if (!p) continue;
-    if (p.up !== e.up) {
+    if (p && p.up !== e.up) {
       changes.push({
         type: e.up ? 'recovery' : 'down',
-        id: e.id,
-        label: e.label,
-        url: e.url,
-        prevCode: p.httpCode,
-        newCode: e.httpCode,
-        prevError: p.error,
+        label: e.label, url: e.url,
+        prevCode: p.httpCode, newCode: e.httpCode,
         newError: e.error
       });
     }
   }
-
   if (prev.dns && curr.dns) {
-    const prevDns = {};
-    for (const d of prev.dns) prevDns[d.domain] = d;
+    const pd = {}; for (const d of prev.dns) pd[d.domain] = d;
     for (const d of curr.dns) {
-      const pd = prevDns[d.domain];
-      if (pd && !pd.resolved && d.resolved) {
-        changes.push({ type: 'dns_restored', domain: d.domain, ips: d.ips });
-      } else if (pd && pd.resolved && !d.resolved) {
-        changes.push({ type: 'dns_lost', domain: d.domain });
-      }
+      const p = pd[d.domain];
+      if (p && !p.resolved && d.resolved) changes.push({ type: 'dns_restored', domain: d.domain, ips: d.ips });
+      else if (p && p.resolved && !d.resolved) changes.push({ type: 'dns_lost', domain: d.domain });
     }
   }
-
   return changes;
 }
 
-function detectCpChanges(prev, curr) {
-  if (!prev || !curr) return null;
-  if (prev.raw !== curr.raw) return { type: 'title_changed', from: prev.raw, to: curr.raw };
-  const prevTexts = (prev.updates || []).map(u => u.text).join('|');
-  const currTexts = (curr.updates || []).map(u => u.text).join('|');
-  if (prevTexts !== currTexts) return { type: 'content_changed', prev: prev.updates, curr: curr.updates };
-  return null;
+function detectRangeChanges(prev, curr) {
+  if (!prev?.length || !curr?.length) return [];
+  const changes = [];
+  const prevMap = {}; for (const r of prev) prevMap[r.range] = r;
+  for (const r of curr) {
+    const p = prevMap[r.range];
+    if (!p) continue;
+    if (p.status === 'DEAD' && r.status !== 'DEAD') changes.push({ type: 'range_up', range: r.range, dc: r.dc, alive: r.alive, total: r.total });
+    else if (p.status !== 'DEAD' && r.status === 'DEAD') changes.push({ type: 'range_down', range: r.range, dc: r.dc });
+  }
+  return changes;
 }
 
-function formatChanges(changes, cpChange, bgpPrev, bgpCurr) {
-  const lines = [];
-  lines.push(`<b>🔔 VDSina Status Update</b>`);
-  lines.push(`<i>${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}</i>\n`);
-
+function formatNotification(changes, cpChange, rangeChanges, bgpPrev, bgpCurr) {
+  const lines = [`<b>🔔 VDSina Status Update</b>`, `<i>${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}</i>\n`];
   for (const c of changes) {
-    if (c.type === 'recovery') {
-      lines.push(`✅ <b>${c.label}</b> — восстановлен (HTTP ${c.newCode})`);
-    } else if (c.type === 'down') {
-      lines.push(`🔴 <b>${c.label}</b> — недоступен (${c.newError || 'HTTP ' + c.newCode})`);
-    } else if (c.type === 'dns_restored') {
-      lines.push(`📡 DNS: <b>${c.domain}</b> снова резолвится → ${c.ips.join(', ')}`);
-    } else if (c.type === 'dns_lost') {
-      lines.push(`⚠️ DNS: <b>${c.domain}</b> — записи пропали`);
-    }
+    if (c.type === 'recovery') lines.push(`✅ <b>${c.label}</b> — восстановлен (HTTP ${c.newCode})`);
+    else if (c.type === 'down') lines.push(`🔴 <b>${c.label}</b> — недоступен (${c.newError || 'HTTP ' + c.newCode})`);
+    else if (c.type === 'dns_restored') lines.push(`📡 DNS: <b>${c.domain}</b> → ${c.ips.join(', ')}`);
+    else if (c.type === 'dns_lost') lines.push(`⚠️ DNS: <b>${c.domain}</b> — пропал`);
   }
-
+  for (const c of rangeChanges) {
+    if (c.type === 'range_up') lines.push(`🟢 Диапазон <b>${c.range}</b> (${c.dc}) — ожил (${c.alive}/${c.total} SSH)`);
+    else if (c.type === 'range_down') lines.push(`🔴 Диапазон <b>${c.range}</b> (${c.dc}) — упал`);
+  }
   if (cpChange) {
-    if (cpChange.type === 'title_changed') {
-      lines.push(`\n📋 <b>cp.vdsina.com обновлён</b>`);
-      lines.push(`Было: ${cpChange.from}`);
-      lines.push(`Стало: ${cpChange.to}`);
-    } else if (cpChange.type === 'content_changed') {
-      lines.push(`\n📋 <b>cp.vdsina.com — текст обновлён</b>`);
-      for (const u of (cpChange.curr || [])) {
-        lines.push(`  ${u.type}: ${u.text.slice(0, 200)}`);
+    if (cpChange.type === 'hash_changed') {
+      lines.push(`\n📋 <b>cp.vdsina.com обновлён!</b>`);
+      lines.push(`Hash: ${cpChange.from} → ${cpChange.to}`);
+      if (cpChange.newUpdates?.length) {
+        for (const u of cpChange.newUpdates.slice(0, 3)) lines.push(`  ${u.type}: ${u.text.slice(0, 150)}`);
       }
     }
   }
-
-  if (bgpPrev && bgpCurr && bgpPrev.v4Prefixes && bgpCurr.v4Prefixes) {
+  if (bgpPrev?.v4Prefixes && bgpCurr?.v4Prefixes) {
     const diff = bgpCurr.v4Prefixes - bgpPrev.v4Prefixes;
-    if (Math.abs(diff) >= 2) {
-      const arrow = diff > 0 ? '📈' : '📉';
-      lines.push(`\n${arrow} BGP AS216071: ${bgpPrev.v4Prefixes}→${bgpCurr.v4Prefixes} IPv4 pfx (${diff > 0 ? '+' : ''}${diff})`);
-    }
+    if (Math.abs(diff) >= 2) lines.push(`\n${diff > 0 ? '📈' : '📉'} BGP: ${bgpPrev.v4Prefixes}→${bgpCurr.v4Prefixes} pfx (${diff > 0 ? '+' : ''}${diff})`);
   }
-
+  lines.push(`\n🌐 https://vdsina-status.github.io`);
   return lines.join('\n');
 }
 
 // ─── MAIN ────────────────────────────────────────────────────
 async function main() {
-  console.log(`[${now()}] Starting VDSina status check...`);
+  console.log(`[${now()}] VDSina status check starting...`);
 
-  let prevStatus = null;
-  let prevCpContent = null;
+  let prevStatus = null, prevCpContent = null;
   try { prevStatus = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf8')); } catch {}
   try { prevCpContent = JSON.parse(fs.readFileSync(CP_CONTENT_FILE, 'utf8')); } catch {}
 
-  // 1. HTTP endpoint checks (parallel)
-  console.log('  Checking endpoints...');
+  // 1. HTTP endpoints (parallel)
+  console.log('  [1/6] Endpoints...');
   const endpoints = await Promise.all(CONFIG.endpoints.map(checkEndpoint));
   const upCount = endpoints.filter(e => e.up).length;
-  console.log(`  ${upCount}/${endpoints.length} endpoints up`);
+  console.log(`    ${upCount}/${endpoints.length} UP`);
 
-  // 2. DNS checks
-  console.log('  Checking DNS...');
+  // 2. DNS
+  console.log('  [2/6] DNS...');
   const dns = CONFIG.dnsChecks.map(checkDNS);
   const dnsUp = dns.filter(d => d.resolved).length;
-  console.log(`  ${dnsUp}/${dns.length} DNS records resolved`);
+  console.log(`    ${dnsUp}/${dns.length} resolved`);
 
-  // 3. BGP check
-  console.log('  Checking BGP...');
+  // 3. BGP
+  console.log('  [3/6] BGP...');
   const bgp = await checkBGP(CONFIG.asn);
-  console.log(`  BGP: ${bgp.v4Prefixes} v4 pfx, ${bgp.v6Prefixes} v6 pfx`);
+  console.log(`    ${bgp.v4Prefixes} v4, ${bgp.v6Prefixes} v6 prefixes`);
 
-  // 4. cp.vdsina.com content parse
-  console.log('  Parsing cp.vdsina.com content...');
+  // 4. cp.vdsina.com parse + snapshot
+  console.log('  [4/6] cp.vdsina.com...');
   const cpBody = await fetchCpFullBody();
-  const cpContent = parseCpContent('', cpBody);
-  console.log(`  CP title: "${cpContent.raw}", updates: ${cpContent.updates.length}`);
+  const cpContent = parseCpContent(cpBody);
+  console.log(`    title="${cpContent.raw}" hash=${cpContent.hash} updates=${cpContent.updates.length}`);
+  const isNewSnapshot = saveCpSnapshot(cpBody, cpContent.hash);
 
-  // 5. DC health (SSH banner check)
-  console.log('  Checking DC health (SSH banners)...');
-  const dcHealth = checkDCHealth();
-  for (const [dc, results] of Object.entries(dcHealth)) {
-    const alive = Object.values(results).filter(Boolean).length;
-    console.log(`  ${dc}: ${alive}/${Object.keys(results).length} reachable`);
-  }
-
-  // 5b. Range scan (SSH banner on all 41 /16 groups)
-  console.log('  Scanning IP ranges (SSH banners)...');
-  const rangeStatus = await checkRanges();
+  // 5. Extended range scan (SSH banners, 4 probes per range)
+  console.log('  [5/6] IP ranges (extended SSH scan)...');
+  const rangeStatus = await scanRanges();
   if (rangeStatus) {
-    const rAlive = rangeStatus.filter(r => r.alive).length;
-    console.log(`  Ranges: ${rAlive}/${rangeStatus.length} alive`);
+    const rAlive = rangeStatus.filter(r => r.status === 'ALIVE').length;
+    const rPartial = rangeStatus.filter(r => r.status === 'PARTIAL').length;
+    const rDead = rangeStatus.filter(r => r.status === 'DEAD').length;
+    console.log(`    ${rAlive} ALIVE, ${rPartial} PARTIAL, ${rDead} DEAD (${rangeStatus.length} ranges)`);
+    fs.writeFileSync(RANGES_FILE, JSON.stringify(rangeStatus, null, 2));
+
+    // Auto-classify DC
+    const dcSummary = { DC2: { alive: 0, dead: 0, ranges: [] }, DC3: { alive: 0, dead: 0, ranges: [] }, other: { alive: 0, dead: 0, ranges: [] } };
+    for (const r of rangeStatus) {
+      const bucket = r.dc.startsWith('DC2') ? 'DC2' : r.dc.startsWith('DC3') ? 'DC3' : 'other';
+      if (r.status !== 'DEAD') dcSummary[bucket].alive++;
+      else dcSummary[bucket].dead++;
+      dcSummary[bucket].ranges.push(r.range);
+    }
+    for (const [dc, s] of Object.entries(dcSummary)) {
+      if (s.ranges.length) console.log(`    ${dc}: ${s.alive} alive / ${s.dead} dead (${s.ranges.length} ranges)`);
+    }
   }
 
-  // 6. Build status object
+  // 6. Build status
+  console.log('  [6/6] Building status...');
   const status = {
     checkedAt: now(),
     incidentStart: CONFIG.incidentStart,
     summary: {
-      endpointsUp: upCount,
-      endpointsTotal: endpoints.length,
-      dnsResolved: dnsUp,
-      dnsTotal: dns.length,
-      bgpV4Prefixes: bgp.v4Prefixes,
-      bgpV6Prefixes: bgp.v6Prefixes
+      endpointsUp: upCount, endpointsTotal: endpoints.length,
+      dnsResolved: dnsUp, dnsTotal: dns.length,
+      bgpV4Prefixes: bgp.v4Prefixes, bgpV6Prefixes: bgp.v6Prefixes,
+      rangesAlive: rangeStatus?.filter(r => r.status !== 'DEAD').length || 0,
+      rangesTotal: rangeStatus?.length || 0
     },
-    endpoints,
-    dns,
-    bgp,
-    dcHealth,
-    rangeStatus,
-    cpContent
+    endpoints, dns, bgp, rangeStatus, cpContent
   };
 
-  // 7. Detect changes
+  // Detect changes
   const changes = detectChanges(prevStatus, status);
-  const cpChange = detectCpChanges(prevCpContent, cpContent);
-  const hasChanges = changes.length > 0 || cpChange;
-
-  if (hasChanges) {
-    console.log(`  🔔 ${changes.length} endpoint changes, CP changed: ${!!cpChange}`);
-    const msg = formatChanges(changes, cpChange, prevStatus?.bgp, bgp);
-    await sendTelegram(msg);
-  } else {
-    console.log('  No changes detected.');
+  const rangeChanges = detectRangeChanges(prevStatus?.rangeStatus, rangeStatus);
+  let cpChange = null;
+  if (prevCpContent?.hash && cpContent.hash && prevCpContent.hash !== cpContent.hash) {
+    cpChange = { type: 'hash_changed', from: prevCpContent.hash, to: cpContent.hash, newUpdates: cpContent.updates };
   }
 
-  // 8. Save status
+  const hasChanges = changes.length > 0 || rangeChanges.length > 0 || cpChange;
+  if (hasChanges) {
+    console.log(`  🔔 Changes: ${changes.length} endpoints, ${rangeChanges.length} ranges, CP: ${!!cpChange}`);
+    const msg = formatNotification(changes, cpChange, rangeChanges, prevStatus?.bgp, bgp);
+    await sendTelegram(msg);
+  } else {
+    console.log('  No changes.');
+  }
+
+  // Save
   fs.writeFileSync(STATUS_FILE, JSON.stringify(status, null, 2));
   fs.writeFileSync(CP_CONTENT_FILE, JSON.stringify(cpContent, null, 2));
 
-  // 9. Append to history
+  // History
   let history = [];
   try { history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8')); } catch {}
   history.push({
@@ -410,10 +431,9 @@ async function main() {
     total: endpoints.length,
     dns: dnsUp,
     bgpV4: bgp.v4Prefixes,
-    dc2: Object.values(dcHealth.dc2 || {}).filter(Boolean).length,
-    dc3: Object.values(dcHealth.dc3 || {}).filter(Boolean).length
+    rangesAlive: status.summary.rangesAlive,
+    rangesTotal: status.summary.rangesTotal
   });
-  // Keep last 30 days at 5-min intervals (~8640 entries)
   if (history.length > 8640) history = history.slice(-8640);
   fs.writeFileSync(HISTORY_FILE, JSON.stringify(history));
 

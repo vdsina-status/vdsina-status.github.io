@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title">Service availability notice</title>
+  <meta name="description" content="Client notice regarding temporary unavailability of some servers in Data Center 2." data-i18n-attr="content:meta.description" />
+  <style>
+    :root {
+      --bg: #f3f7fb;
+      --bg-2: #eaf2fb;
+      --card: #ffffff;
+      --text: #1e2a36;
+      --muted: #64748b;
+      --border: #dde8f3;
+      --primary: #2491eb;
+      --primary-dark: #1476c9;
+      --primary-soft: #e6f4ff;
+      --warning: #f59e0b;
+      --warning-soft: #fff7e6;
+      --shadow: 0 24px 60px rgba(31, 74, 119, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(36, 145, 235, 0.16), transparent 32rem),
+        radial-gradient(circle at bottom right, rgba(36, 145, 235, 0.12), transparent 34rem),
+        linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(36, 145, 235, 0.08);
+      pointer-events: none;
+    }
+
+    .page::before {
+      width: 420px;
+      height: 420px;
+      top: -150px;
+      right: -130px;
+    }
+
+    .page::after {
+      width: 360px;
+      height: 360px;
+      bottom: -160px;
+      left: -110px;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 980px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid rgba(221, 232, 243, 0.95);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 10px 24px rgba(31, 74, 119, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .language-button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 13px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .language-button:hover {
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+    }
+
+    .language-button[aria-pressed="true"] {
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 8px 18px rgba(36, 145, 235, 0.28);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border: 1px solid rgba(245, 158, 11, 0.24);
+      border-radius: 999px;
+      background: var(--warning-soft);
+      color: #9a5b00;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--warning);
+      box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.14);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.14); }
+      50% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0.08); }
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid rgba(221, 232, 243, 0.9);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .card + .card {
+      margin-top: 22px;
+    }
+
+    .compact-card {
+      padding: 34px 38px;
+    }
+
+    .compact-card .lead {
+      margin-bottom: 0;
+    }
+
+    .compact-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 20px;
+    }
+
+    .compact-title {
+      margin: 0;
+      font-size: clamp(25px, 3vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.045em;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0;
+    }
+
+    .content { padding: 54px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    .lead {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .notice {
+      display: grid;
+      gap: 18px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .notice li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 13px;
+      align-items: start;
+    }
+
+    .icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 900;
+      font-size: 15px;
+      flex: 0 0 auto;
+    }
+
+    .notice p {
+      margin: 0;
+      color: #324255;
+      font-size: 16px;
+    }
+
+    .notice strong { color: var(--text); }
+
+    .side {
+      position: relative;
+      padding: 42px;
+      background:
+        linear-gradient(160deg, rgba(36, 145, 235, 0.96), rgba(20, 118, 201, 0.96)),
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.5), transparent 22rem);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .side::before,
+    .side::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 32px;
+      transform: rotate(-10deg);
+    }
+
+    .side::before {
+      width: 230px;
+      height: 150px;
+      right: -70px;
+      top: 50px;
+    }
+
+    .side::after {
+      width: 250px;
+      height: 170px;
+      left: -105px;
+      bottom: 70px;
+    }
+
+    .server-card {
+      position: relative;
+      z-index: 1;
+      margin-top: 30px;
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 24px 50px rgba(4, 42, 76, 0.18);
+    }
+
+    .server-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      font-size: 14px;
+    }
+
+    .server-row:last-child { border-bottom: 0; }
+    .server-row span:first-child { opacity: 0.8; }
+    .server-row span:last-child { font-weight: 800; text-align: right; }
+
+    .side-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .side-text {
+      position: relative;
+      z-index: 1;
+      margin: 14px 0 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 15px;
+    }
+
+
+
+    .history-card {
+      margin-top: 22px;
+      padding: 34px;
+    }
+
+    .history-title {
+      margin: 0 0 18px;
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: #fbfdff;
+    }
+
+    .timeline-date {
+      color: var(--primary-dark);
+      font-weight: 900;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .timeline-content h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .timeline-content p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; }
+      .content { padding: 36px 28px; }
+      .side { padding: 32px 28px; }
+      .compact-card { padding: 30px 28px; }
+      .history-card { padding: 30px 28px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .compact-header { flex-direction: column; }
+      .topbar { align-items: flex-start; }
+      .status-pill { white-space: normal; }
+    }
+
+    @media (max-width: 520px) {
+      .page { padding: 28px 14px; }
+      .content { padding: 30px 20px; }
+      .side { padding: 28px 20px; }
+      .compact-card { padding: 26px 20px; }
+      .history-card { padding: 26px 20px; }
+      .topbar { flex-direction: column-reverse; }
+      .notice li { grid-template-columns: 1fr; }
+      .server-row { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .server-row span:last-child { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="shell" aria-labelledby="migration-title">
+      <header class="topbar">
+        <div class="language-switcher" role="group" aria-label="Language selection" data-i18n-attr="aria-label:language.aria">
+          <button class="language-button" type="button" data-language="ru" aria-pressed="false">RU</button>
+          <button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
+
+        <div class="status-pill" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-i18n="status.pill">Temporary service availability issue</span>
+        </div>
+      </header>
+
+      <article class="card" aria-labelledby="incident-title">
+        <div class="hero">
+          <div class="content">
+            <div class="eyebrow" data-i18n="main.eyebrow">Information notice</div>
+            <h1 id="incident-title" data-i18n="main.title">Temporary unavailability of some servers</h1>
+            <p class="lead" data-i18n="main.lead">
+              Some servers hosted in Data Center 2 are currently temporarily unavailable.
+            </p>
+
+            <ul class="notice">
+              <li>
+                <span class="icon">1</span>
+                <p data-i18n-html="main.item1">
+                  The unavailability is related to an <strong>incident on the side of our infrastructure partner</strong>.
+                </p>
+              </li>
+              <li>
+                <span class="icon">2</span>
+                <p data-i18n="main.item2">
+                  We understand how critical service availability is for your business and sincerely apologize for any inconvenience this may cause.
+                </p>
+              </li>
+              <li>
+                <span class="icon">3</span>
+                <p data-i18n="main.item3">
+                  Our team is in constant communication with the partner, working to restore access and evaluating alternative options for hosting the equipment.
+                </p>
+              </li>
+              <li>
+                <span class="icon">4</span>
+                <p data-i18n="main.item4">
+                  As soon as we receive confirmed information regarding the restoration timeline and next steps, we will publish an update immediately.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="side" aria-label="Incident summary" data-i18n-attr="aria-label:side.aria">
+            <h2 class="side-title" data-i18n="side.title">We are monitoring the situation</h2>
+            <p class="side-text" data-i18n="side.text">
+              Updates will be published as confirmed information becomes available.
+            </p>
+
+            <div class="server-card">
+              <div class="server-row">
+                <span data-i18n="side.row1.label">Hosting area</span>
+                <span data-i18n="side.row1.value">Data Center 2</span>
+              </div>
+              <div class="server-row">
+                <span data-i18n="side.row2.label">Status</span>
+                <span data-i18n="side.row2.value">Work in progress</span>
+              </div>
+              <div class="server-row">
+                <span data-i18n="side.row3.label">Cause</span>
+                <span data-i18n="side.row3.value">Partner-side incident</span>
+              </div>
+              <div class="server-row">
+                <span data-i18n="side.row4.label">Next update</span>
+                <span data-i18n="side.row4.value">After timeline confirmation</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </article>
+
+      <article class="card compact-card" aria-labelledby="update-title">
+        <div class="compact-header">
+          <div>
+            <div class="eyebrow" data-i18n="update.eyebrow">Update</div>
+            <h2 class="compact-title" id="update-title" data-i18n="update.title">Data Center 3 client servers are fully online</h2>
+          </div>
+          <div class="status-badge" data-i18n="update.badge">Update</div>
+        </div>
+
+        <p class="lead" data-i18n="update.text">
+          Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel. We will continue publishing updates as confirmed information becomes available.
+        </p>
+      </article>
+
+      <article class="card history-card" aria-labelledby="history-title">
+        <div class="eyebrow" data-i18n="history.eyebrow">Update history</div>
+        <h2 class="history-title" id="history-title" data-i18n="history.title">History of updates</h2>
+
+        <ol class="timeline">
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2026-06-10" data-i18n="history.item1.date">June 10, 2026</time>
+            <div class="timeline-content">
+              <h3 data-i18n="history.item1.title">Data Center 3 client servers are fully online</h3>
+              <p data-i18n="history.item1.text">Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2026-06-10" data-i18n="history.item2.date">June 10, 2026</time>
+            <div class="timeline-content">
+              <h3 data-i18n="history.item2.title">Relocation work extended</h3>
+              <p data-i18n="history.item2.text">Due to logistics-related complications, the work related to the full relocation of Data Center 3 was extended until June 10, 2026. Work was also ongoing to restore the functionality of the control panel.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2026-06-04" data-i18n="history.item3.date">June 4, 2026</time>
+            <div class="timeline-content">
+              <h3 data-i18n="history.item3.title">Full relocation of Data Center 3</h3>
+              <p data-i18n="history.item3.text">Data Center 3 was undergoing a full relocation from June 4 through June 7, 2026. Services hosted in this data center could be temporarily unavailable during this period.</p>
+            </div>
+          </li>
+        </ol>
+      </article>
+
+      <p class="footer" data-i18n="footer.text">
+        Thank you for your understanding and patience. We will keep you informed as the situation develops.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const translations = {
+      ru: {
+        meta: {
+          title: 'Уведомление о временной недоступности серверов',
+          description: 'Уведомление для клиентов о временной недоступности части серверов в Датацентре 2.'
+        },
+        language: {
+          aria: 'Выбор языка'
+        },
+        status: {
+          pill: 'Временная недоступность части серверов'
+        },
+        update: {
+          eyebrow: 'Обновление',
+          title: 'Клиентские серверы из Датацентра 3 полностью запущены',
+          badge: 'Серверы запущены',
+          text: 'Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления. Мы будем публиковать обновления по мере появления подтвержденной информации.'
+        },
+
+        history: {
+          eyebrow: 'История обновлений',
+          title: 'История обновлений',
+          item1: {
+            date: '10 июня 2026',
+            title: 'Клиентские серверы из Датацентра 3 полностью запущены',
+            text: 'Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления.'
+          },
+          item2: {
+            date: '10 июня 2026',
+            title: 'Работы по переезду были продлены',
+            text: 'В связи со сложностями логистики работы по полному переезду Датацентра 3 были продлены до 10 июня 2026 года. Также продолжались работы по восстановлению функционирования панели управления.'
+          },
+          item3: {
+            date: '4 июня 2026',
+            title: 'Полный переезд Датацентра 3',
+            text: 'Датацентр 3 полностью находился в процессе переезда с 4 по 7 июня 2026 года. В течение этого периода размещенные в нем сервисы могли быть временно недоступны.'
+          }
+        },
+        main: {
+          eyebrow: 'Информационное уведомление',
+          title: 'Временная недоступность части серверов',
+          lead: 'Часть серверов, размещенных в Датацентре 2, в настоящее время временно недоступна.',
+          item1: 'Недоступность связана с <strong>внештатной ситуацией на стороне нашего инфраструктурного партнера</strong>.',
+          item2: 'Мы понимаем, насколько критична доступность сервисов для вашего бизнеса, и приносим извинения за возможные неудобства.',
+          item3: 'Наша команда находится на постоянной связи с партнером, ведет работу по восстановлению доступа и рассматривает альтернативные варианты размещения оборудования.',
+          item4: 'Как только появится подтвержденная информация о сроках восстановления и дальнейших действиях, мы сразу опубликуем обновление.'
+        },
+        side: {
+          aria: 'Сводка по инциденту',
+          title: 'Мы держим ситуацию на контроле',
+          text: 'Обновления будут публиковаться по мере появления подтвержденной информации.',
+          row1: { label: 'Зона размещения', value: 'Датацентр 2' },
+          row2: { label: 'Статус', value: 'Ведутся работы' },
+          row3: { label: 'Причина', value: 'Инцидент у партнера' },
+          row4: { label: 'Следующее обновление', value: 'После подтверждения сроков' }
+        },
+        footer: {
+          text: 'Благодарим за понимание и терпение. Мы будем держать вас в курсе развития ситуации.'
+        }
+      },
+      en: {
+        meta: {
+          title: 'Service availability notice',
+          description: 'Client notice regarding temporary unavailability of some servers in Data Center 2.'
+        },
+        language: {
+          aria: 'Language selection'
+        },
+        status: {
+          pill: 'DC3 client servers are online'
+        },
+        update: {
+          eyebrow: 'Update',
+          title: 'Data Center 3 client servers are fully online',
+          badge: 'Servers online',
+          text: 'Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel. We will continue publishing updates as confirmed information becomes available.'
+        },
+
+        history: {
+          eyebrow: 'Update history',
+          title: 'History of updates',
+          item1: {
+            date: 'June 10, 2026',
+            title: 'Data Center 3 client servers are fully online',
+            text: 'Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel.'
+          },
+          item2: {
+            date: 'June 10, 2026',
+            title: 'Relocation work was extended',
+            text: 'Due to logistics-related complications, the work related to the full relocation of Data Center 3 was extended until June 10, 2026. Work was also ongoing to restore the functionality of the control panel.'
+          },
+          item3: {
+            date: 'June 4, 2026',
+            title: 'Full relocation of Data Center 3',
+            text: 'Data Center 3 was undergoing a full relocation from June 4 through June 7, 2026. Services hosted in this data center could be temporarily unavailable during this period.'
+          }
+        },
+        main: {
+          eyebrow: 'Information notice',
+          title: 'Temporary unavailability of some servers',
+          lead: 'Some servers hosted in Data Center 2 are currently temporarily unavailable.',
+          item1: 'The unavailability is related to an <strong>incident on the side of our infrastructure partner</strong>.',
+          item2: 'We understand how critical service availability is for your business and sincerely apologize for any inconvenience this may cause.',
+          item3: 'Our team is in constant communication with the partner, working to restore access and evaluating alternative options for hosting the equipment.',
+          item4: 'As soon as we receive confirmed information regarding the restoration timeline and next steps, we will publish an update immediately.'
+        },
+        side: {
+          aria: 'Incident summary',
+          title: 'We are monitoring the situation',
+          text: 'Updates will be published as confirmed information becomes available.',
+          row1: { label: 'Hosting area', value: 'Data Center 2' },
+          row2: { label: 'Status', value: 'Work in progress' },
+          row3: { label: 'Cause', value: 'Partner-side incident' },
+          row4: { label: 'Next update', value: 'After timeline confirmation' }
+        },
+        footer: {
+          text: 'Thank you for your understanding and patience. We will keep you informed as the situation develops.'
+        }
+      }
+    };
+
+    function getValue(path, dictionary) {
+      return path.split('.').reduce((value, key) => value && value[key], dictionary);
+    }
+
+    function detectLanguage() {
+      const browserLanguages = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || navigator.userLanguage || 'en'];
+
+      return browserLanguages.some(language => String(language).toLowerCase().startsWith('ru'))
+        ? 'ru'
+        : 'en';
+    }
+
+    function applyLanguage(language) {
+      const normalizedLanguage = translations[language] ? language : 'en';
+      const dictionary = translations[normalizedLanguage];
+
+      document.documentElement.lang = normalizedLanguage;
+      document.title = dictionary.meta.title;
+
+      document.querySelectorAll('[data-language]').forEach(button => {
+        const isActive = button.dataset.language === normalizedLanguage;
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const value = getValue(element.dataset.i18n, dictionary);
+        if (value) element.textContent = value;
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(element => {
+        const value = getValue(element.dataset.i18nHtml, dictionary);
+        if (value) element.innerHTML = value;
+      });
+
+      document.querySelectorAll('[data-i18n-attr]').forEach(element => {
+        element.dataset.i18nAttr.split(';').forEach(rule => {
+          const [attribute, path] = rule.split(':').map(part => part.trim());
+          const value = getValue(path, dictionary);
+          if (attribute && value) element.setAttribute(attribute, value);
+        });
+      });
+    }
+
+    function getInitialLanguage() {
+      try {
+        const savedLanguage = localStorage.getItem('statusPageLanguage');
+        if (savedLanguage && translations[savedLanguage]) return savedLanguage;
+      } catch (error) {
+        // localStorage can be unavailable in restricted browser modes.
+      }
+
+      return detectLanguage();
+    }
+
+    document.querySelectorAll('[data-language]').forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedLanguage = button.dataset.language;
+        applyLanguage(selectedLanguage);
+
+        try {
+          localStorage.setItem('statusPageLanguage', selectedLanguage);
+        } catch (error) {
+          // Language selection will still work for the current page view.
+        }
+      });
+    });
+
+    applyLanguage(getInitialLanguage());
+  </script>
+</body>
+</html>
