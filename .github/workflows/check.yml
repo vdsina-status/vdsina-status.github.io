@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   check:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
@@ -29,5 +29,5 @@ jobs:
           git config user.name "VDSina Status Bot"
           git config user.email "bot@vdsina-status.github.io"
           git add data/
-          git diff --cached --quiet || git commit -m "status: $(Get-Date -Format 'yyyy-MM-dd HH:mm') UTC"
+          git diff --cached --quiet || git commit -m "status: $(date -u '+%Y-%m-%d %H:%M') UTC"
           git push

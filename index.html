@@ -441,7 +441,8 @@ function drawChart(history){
 
 async function load(){
   try{
-    const [statusResp,histResp]=await Promise.all([fetch(DATA_URL),fetch(HIST_URL).catch(()=>null)]);
+    const bust='?t='+Date.now();
+    const [statusResp,histResp]=await Promise.all([fetch(DATA_URL+bust),fetch(HIST_URL+bust).catch(()=>null)]);
     if(!statusResp.ok)throw new Error('status.json not found');
     const data=await statusResp.json();
     render(data);

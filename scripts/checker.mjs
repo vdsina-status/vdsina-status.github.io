@@ -2,9 +2,9 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
 import net from 'net';
 import crypto from 'crypto';
+import dns from 'dns/promises';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -64,17 +64,13 @@ async function checkEndpoint(ep) {
   }
 }
 
-// ─── DNS check ───────────────────────────────────────────────
-function checkDNS(domain) {
+// ─── DNS check (cross-platform via Node.js dns) ─────────────
+async function checkDNS(domain) {
   try {
-    const out = execSync(
-      `powershell -NoProfile -Command "Resolve-DnsName '${domain}' -Type A -ErrorAction Stop | Where-Object { $_.Type -eq 'A' } | Select-Object -ExpandProperty IPAddress"`,
-      { timeout: 8000, encoding: 'utf8', stdio: ['pipe','pipe','pipe'] }
-    ).trim();
-    const ips = out.split(/\r?\n/).filter(Boolean);
-    return { domain, resolved: true, ips, error: null };
-  } catch {
-    return { domain, resolved: false, ips: [], error: 'NXDOMAIN' };
+    const result = await dns.resolve4(domain);
+    return { domain, resolved: true, ips: result, error: null };
+  } catch (err) {
+    return { domain, resolved: false, ips: [], error: err.code || 'NXDOMAIN' };
   }
 }
 
@@ -356,10 +352,10 @@ async function main() {
   const upCount = endpoints.filter(e => e.up).length;
   console.log(`    ${upCount}/${endpoints.length} UP`);
 
-  // 2. DNS
+  // 2. DNS (parallel)
   console.log('  [2/6] DNS...');
-  const dns = CONFIG.dnsChecks.map(checkDNS);
-  const dnsUp = dns.filter(d => d.resolved).length;
+  const dnsResults = await Promise.all(CONFIG.dnsChecks.map(checkDNS));
+  const dnsUp = dnsResults.filter(d => d.resolved).length;
   console.log(`    ${dnsUp}/${dns.length} resolved`);
 
   // 3. BGP
@@ -404,12 +400,12 @@ async function main() {
     incidentStart: CONFIG.incidentStart,
     summary: {
       endpointsUp: upCount, endpointsTotal: endpoints.length,
-      dnsResolved: dnsUp, dnsTotal: dns.length,
+      dnsResolved: dnsUp, dnsTotal: dnsResults.length,
       bgpV4Prefixes: bgp.v4Prefixes, bgpV6Prefixes: bgp.v6Prefixes,
       rangesAlive: rangeStatus?.filter(r => r.status !== 'DEAD').length || 0,
       rangesTotal: rangeStatus?.length || 0
     },
-    endpoints, dns, bgp, rangeStatus, cpContent
+    endpoints, dns: dnsResults, bgp, rangeStatus, cpContent
   };
 
   // Detect changes
