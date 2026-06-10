@@ -3,117 +3,17 @@
   "updates": [
     {
       "type": "title",
-      "text": "Уведомление о временной недоступности серверов"
-    },
-    {
-      "type": "title",
       "text": "Клиентские серверы из Датацентра 3 полностью запущены"
-    },
-    {
-      "type": "title",
-      "text": "История обновлений"
-    },
-    {
-      "type": "title",
-      "text": "Клиентские серверы из Датацентра 3 полностью запущены"
-    },
-    {
-      "type": "title",
-      "text": "Работы по переезду были продлены"
-    },
-    {
-      "type": "title",
-      "text": "Полный переезд Датацентра 3"
-    },
-    {
-      "type": "title",
-      "text": "Временная недоступность части серверов"
-    },
-    {
-      "type": "title",
-      "text": "Мы держим ситуацию на контроле"
-    },
-    {
-      "type": "title",
-      "text": "Service availability notice"
-    },
-    {
-      "type": "title",
-      "text": "Data Center 3 client servers are fully online"
-    },
-    {
-      "type": "title",
-      "text": "History of updates"
-    },
-    {
-      "type": "title",
-      "text": "Data Center 3 client servers are fully online"
-    },
-    {
-      "type": "title",
-      "text": "Relocation work was extended"
-    },
-    {
-      "type": "title",
-      "text": "Full relocation of Data Center 3"
-    },
-    {
-      "type": "title",
-      "text": "Temporary unavailability of some servers"
-    },
-    {
-      "type": "title",
-      "text": "We are monitoring the situation"
     },
     {
       "type": "detail",
       "text": "Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления. Мы будем публиковать обновления по мере появления подтвержденной информации."
     },
     {
-      "type": "detail",
-      "text": "Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления."
-    },
-    {
-      "type": "detail",
-      "text": "В связи со сложностями логистики работы по полному переезду Датацентра 3 были продлены до 10 июня 2026 года. Также продолжались работы по восстановлению функционирования панели управления."
-    },
-    {
-      "type": "detail",
-      "text": "Датацентр 3 полностью находился в процессе переезда с 4 по 7 июня 2026 года. В течение этого периода размещенные в нем сервисы могли быть временно недоступны."
-    },
-    {
-      "type": "detail",
-      "text": "Обновления будут публиковаться по мере появления подтвержденной информации."
-    },
-    {
-      "type": "detail",
-      "text": "Благодарим за понимание и терпение. Мы будем держать вас в курсе развития ситуации."
-    },
-    {
-      "type": "detail",
-      "text": "Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel. We will continue publishing updates as confirmed information becomes available."
-    },
-    {
-      "type": "detail",
-      "text": "Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel."
-    },
-    {
-      "type": "detail",
-      "text": "Due to logistics-related complications, the work related to the full relocation of Data Center 3 was extended until June 10, 2026. Work was also ongoing to restore the functionality of the control panel."
-    },
-    {
-      "type": "detail",
-      "text": "Data Center 3 was undergoing a full relocation from June 4 through June 7, 2026. Services hosted in this data center could be temporarily unavailable during this period."
-    },
-    {
-      "type": "detail",
-      "text": "Updates will be published as confirmed information becomes available."
-    },
-    {
-      "type": "detail",
-      "text": "Thank you for your understanding and patience. We will keep you informed as the situation develops."
+      "type": "lead",
+      "text": "Часть серверов, размещенных в Датацентре 2, в настоящее время временно недоступна."
     }
   ],
   "hash": "5fdedd3fe1f765a9",
-  "lastParsed": "2026-06-10T16:58:48.761Z"
+  "lastParsed": "2026-06-10T17:07:12.017Z"
 }

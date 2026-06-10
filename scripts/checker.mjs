@@ -218,14 +218,25 @@ function parseCpContent(html) {
   const titleMatch = html.match(/<title[^>]*>([^<]+)/i);
   if (titleMatch) result.raw = titleMatch[1].trim();
 
-  const transMatch = html.match(/const\s+translations\s*=\s*(\{[\s\S]*?\});\s*\n\s*function/);
-  if (transMatch) {
+  // Extract Russian "ru" block — stops before "en:" block
+  const ruBlock = html.match(/ru:\s*\{([\s\S]*?)\n\s*\},?\s*\n\s*en:\s*\{/);
+  if (ruBlock) {
     try {
-      const t = transMatch[1];
-      const allTitles = [...t.matchAll(/title:\s*'([^']{10,})'/g)];
-      const allTexts = [...t.matchAll(/text:\s*'([^']{50,})'/g)];
-      for (const m of allTitles) result.updates.push({ type: 'title', text: m[1] });
-      for (const m of allTexts) result.updates.push({ type: 'detail', text: m[1] });
+      const ru = ruBlock[1];
+      const updateSection = ru.match(/update:\s*\{([\s\S]*?)\n\s{8}\}/);
+      if (updateSection) {
+        const us = updateSection[1];
+        const t = us.match(/title:\s*'([^']+)'/);
+        const x = us.match(/text:\s*'([^']+)'/);
+        if (t) result.updates.push({ type: 'title', text: t[1] });
+        if (x) result.updates.push({ type: 'detail', text: x[1] });
+      }
+      const mainSection = ru.match(/main:\s*\{([\s\S]*?)\n\s{8}\}/);
+      if (mainSection) {
+        const ms = mainSection[1];
+        const lead = ms.match(/lead:\s*'([^']+)'/);
+        if (lead) result.updates.push({ type: 'lead', text: lead[1] });
+      }
     } catch {}
   }
 

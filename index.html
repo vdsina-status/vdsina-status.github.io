@@ -261,13 +261,15 @@ function render(data){
 
   // Incident box
   const cp=data.cpContent||{};
-  let incHtml='<h3>⚠️ Инцидент VDSina — DC2 & Панель</h3>';
-  if(cp.updates&&cp.updates.length){
-    incHtml+=cp.updates.map(u=>`<p><b>${u.type==='title'?'Заголовок':'Детали'}:</b> ${u.text}</p>`).join('');
-  }else{
-    incHtml+='<p>DC2 — серверы недоступны. Панель/API — не работают. DC3 — частично восстановлен.</p>';
-  }
-  incHtml+='<div class="sm">Источник: cp.vdsina.com</div>';
+  const title=cp.updates?.find(u=>u.type==='title');
+  const detail=cp.updates?.find(u=>u.type==='detail');
+  const lead=cp.updates?.find(u=>u.type==='lead');
+  let incHtml=`<h3>⚠️ Инцидент VDSina — DC2 & Панель</h3>`;
+  if(title) incHtml+=`<p><b>${title.text}</b></p>`;
+  if(detail) incHtml+=`<p style="margin-top:6px">${detail.text}</p>`;
+  else if(lead) incHtml+=`<p style="margin-top:6px">${lead.text}</p>`;
+  if(!title&&!detail) incHtml+='<p>DC2 — серверы недоступны. Панель/API — не работают. DC3 — частично восстановлен.</p>';
+  incHtml+=`<div class="sm">Источник: <a href="https://cp.vdsina.com" target="_blank" style="color:var(--muted)">cp.vdsina.com</a>${cp.hash?' · hash: '+cp.hash:''}</div>`;
   document.getElementById('incidentBox').innerHTML=incHtml;
 
   // Endpoints table

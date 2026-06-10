@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-10T16:59:13.915Z",
+  "checkedAt": "2026-06-10T17:07:37.218Z",
   "incidentStart": "2026-06-02T13:54:00Z",
   "summary": {
     "endpointsUp": 5,
@@ -18,12 +18,12 @@
       "label": "API Root",
       "category": "api",
       "httpCode": 0,
-      "responseMs": 10003,
+      "responseMs": 10015,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": 20,
-      "checkedAt": "2026-06-10T16:58:43.759Z"
+      "checkedAt": "2026-06-10T17:07:02.425Z"
     },
     {
       "id": "api-v1",
@@ -36,7 +36,7 @@
       "redirect": null,
       "bodySnippet": "",
       "error": 20,
-      "checkedAt": "2026-06-10T16:58:43.803Z"
+      "checkedAt": "2026-06-10T17:07:02.471Z"
     },
     {
       "id": "api-v1-account",
@@ -49,7 +49,7 @@
       "redirect": null,
       "bodySnippet": "",
       "error": 20,
-      "checkedAt": "2026-06-10T16:58:43.804Z"
+      "checkedAt": "2026-06-10T17:07:02.472Z"
     },
     {
       "id": "api-v1-server",
@@ -57,12 +57,12 @@
       "label": "API /v1/server",
       "category": "api",
       "httpCode": 0,
-      "responseMs": 10008,
+      "responseMs": 10007,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": 20,
-      "checkedAt": "2026-06-10T16:58:43.805Z"
+      "checkedAt": "2026-06-10T17:07:02.472Z"
     },
     {
       "id": "api-v1-auth",
@@ -70,12 +70,12 @@
       "label": "API /v1/auth",
       "category": "api",
       "httpCode": 0,
-      "responseMs": 10007,
+      "responseMs": 10006,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": 20,
-      "checkedAt": "2026-06-10T16:58:43.805Z"
+      "checkedAt": "2026-06-10T17:07:02.472Z"
     },
     {
       "id": "cp",
@@ -83,12 +83,12 @@
       "label": "CP (Status Page)",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 551,
+      "responseMs": 545,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
       "error": null,
-      "checkedAt": "2026-06-10T16:58:34.353Z"
+      "checkedAt": "2026-06-10T17:06:53.015Z"
     },
     {
       "id": "cp-login",
@@ -96,12 +96,12 @@
       "label": "CP Login",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 553,
+      "responseMs": 559,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
       "error": null,
-      "checkedAt": "2026-06-10T16:58:34.353Z"
+      "checkedAt": "2026-06-10T17:06:53.028Z"
     },
     {
       "id": "panel",
@@ -109,12 +109,12 @@
       "label": "Panel",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 81,
+      "responseMs": 71,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:33.881Z"
+      "checkedAt": "2026-06-10T17:06:52.540Z"
     },
     {
       "id": "my",
@@ -122,12 +122,12 @@
       "label": "My (LK)",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 82,
+      "responseMs": 61,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:33.883Z"
+      "checkedAt": "2026-06-10T17:06:52.531Z"
     },
     {
       "id": "bill",
@@ -135,12 +135,12 @@
       "label": "Billing",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 147,
+      "responseMs": 125,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:33.950Z"
+      "checkedAt": "2026-06-10T17:06:52.596Z"
     },
     {
       "id": "support",
@@ -148,12 +148,12 @@
       "label": "Support",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 148,
+      "responseMs": 115,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:33.951Z"
+      "checkedAt": "2026-06-10T17:06:52.587Z"
     },
     {
       "id": "status",
@@ -161,12 +161,12 @@
       "label": "Status (Official)",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 203,
+      "responseMs": 170,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:34.007Z"
+      "checkedAt": "2026-06-10T17:06:52.643Z"
     },
     {
       "id": "docs",
@@ -174,12 +174,12 @@
       "label": "Docs",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 207,
+      "responseMs": 172,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:34.011Z"
+      "checkedAt": "2026-06-10T17:06:52.645Z"
     },
     {
       "id": "auth",
@@ -187,12 +187,12 @@
       "label": "Auth",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 273,
+      "responseMs": 234,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:34.078Z"
+      "checkedAt": "2026-06-10T17:06:52.708Z"
     },
     {
       "id": "www",
@@ -200,12 +200,12 @@
       "label": "WWW (Main)",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 789,
+      "responseMs": 839,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"en\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Cloud VPS/VDS servers with Windows and Linux for any task. All functions in one click: reboot, install OS, manage VDS servers. Instant activation of ordered services.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152x152\" href=\"/apple",
       "error": null,
-      "checkedAt": "2026-06-10T16:58:34.594Z"
+      "checkedAt": "2026-06-10T17:06:53.315Z"
     },
     {
       "id": "vdsina-ru",
@@ -213,12 +213,12 @@
       "label": "VDSina.ru",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 900,
+      "responseMs": 654,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"ru\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Облачные VPS/VDS серверы c Windows и Linux для любых задач. Все функции в один клик: перезагружайте, устанавливайте ОС, управляйте VDS серверами. Мгновенная активация заказанных услуг.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152",
       "error": null,
-      "checkedAt": "2026-06-10T16:58:34.707Z"
+      "checkedAt": "2026-06-10T17:06:53.129Z"
     },
     {
       "id": "panel-ru",
@@ -226,12 +226,12 @@
       "label": "Panel .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 10001,
+      "responseMs": 10000,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": 20,
-      "checkedAt": "2026-06-10T16:58:43.807Z"
+      "checkedAt": "2026-06-10T17:07:02.476Z"
     },
     {
       "id": "my-ru",
@@ -239,12 +239,12 @@
       "label": "My .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 224,
+      "responseMs": 231,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:58:34.030Z"
+      "checkedAt": "2026-06-10T17:06:52.708Z"
     },
     {
       "id": "api-ru",
@@ -252,12 +252,12 @@
       "label": "API .ru",
       "category": "api",
       "httpCode": 302,
-      "responseMs": 538,
+      "responseMs": 547,
       "up": true,
       "redirect": "https://vdsina.ru/",
       "bodySnippet": "<html>\r\n<head><title>302 Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>302 Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-10T16:58:34.348Z"
+      "checkedAt": "2026-06-10T17:06:53.024Z"
     }
   ],
   "dns": [
@@ -335,7 +335,7 @@
     "v4Ips": 94208,
     "visibility": 327,
     "totalPeers": 327,
-    "checkedAt": "2026-06-10T16:58:48.465Z",
+    "checkedAt": "2026-06-10T17:07:11.393Z",
     "error": null
   },
   "rangeStatus": [
@@ -1657,118 +1657,18 @@
     "updates": [
       {
         "type": "title",
-        "text": "Уведомление о временной недоступности серверов"
-      },
-      {
-        "type": "title",
         "text": "Клиентские серверы из Датацентра 3 полностью запущены"
-      },
-      {
-        "type": "title",
-        "text": "История обновлений"
-      },
-      {
-        "type": "title",
-        "text": "Клиентские серверы из Датацентра 3 полностью запущены"
-      },
-      {
-        "type": "title",
-        "text": "Работы по переезду были продлены"
-      },
-      {
-        "type": "title",
-        "text": "Полный переезд Датацентра 3"
-      },
-      {
-        "type": "title",
-        "text": "Временная недоступность части серверов"
-      },
-      {
-        "type": "title",
-        "text": "Мы держим ситуацию на контроле"
-      },
-      {
-        "type": "title",
-        "text": "Service availability notice"
-      },
-      {
-        "type": "title",
-        "text": "Data Center 3 client servers are fully online"
-      },
-      {
-        "type": "title",
-        "text": "History of updates"
-      },
-      {
-        "type": "title",
-        "text": "Data Center 3 client servers are fully online"
-      },
-      {
-        "type": "title",
-        "text": "Relocation work was extended"
-      },
-      {
-        "type": "title",
-        "text": "Full relocation of Data Center 3"
-      },
-      {
-        "type": "title",
-        "text": "Temporary unavailability of some servers"
-      },
-      {
-        "type": "title",
-        "text": "We are monitoring the situation"
       },
       {
         "type": "detail",
         "text": "Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления. Мы будем публиковать обновления по мере появления подтвержденной информации."
       },
       {
-        "type": "detail",
-        "text": "Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления."
-      },
-      {
-        "type": "detail",
-        "text": "В связи со сложностями логистики работы по полному переезду Датацентра 3 были продлены до 10 июня 2026 года. Также продолжались работы по восстановлению функционирования панели управления."
-      },
-      {
-        "type": "detail",
-        "text": "Датацентр 3 полностью находился в процессе переезда с 4 по 7 июня 2026 года. В течение этого периода размещенные в нем сервисы могли быть временно недоступны."
-      },
-      {
-        "type": "detail",
-        "text": "Обновления будут публиковаться по мере появления подтвержденной информации."
-      },
-      {
-        "type": "detail",
-        "text": "Благодарим за понимание и терпение. Мы будем держать вас в курсе развития ситуации."
-      },
-      {
-        "type": "detail",
-        "text": "Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel. We will continue publishing updates as confirmed information becomes available."
-      },
-      {
-        "type": "detail",
-        "text": "Client servers previously hosted in Data Center 3 have been fully started and are now online. Temporary limitations may continue to apply only to external HDD drives and the backup creation system. Work is also ongoing to restore the functionality of the control panel."
-      },
-      {
-        "type": "detail",
-        "text": "Due to logistics-related complications, the work related to the full relocation of Data Center 3 was extended until June 10, 2026. Work was also ongoing to restore the functionality of the control panel."
-      },
-      {
-        "type": "detail",
-        "text": "Data Center 3 was undergoing a full relocation from June 4 through June 7, 2026. Services hosted in this data center could be temporarily unavailable during this period."
-      },
-      {
-        "type": "detail",
-        "text": "Updates will be published as confirmed information becomes available."
-      },
-      {
-        "type": "detail",
-        "text": "Thank you for your understanding and patience. We will keep you informed as the situation develops."
+        "type": "lead",
+        "text": "Часть серверов, размещенных в Датацентре 2, в настоящее время временно недоступна."
       }
     ],
     "hash": "5fdedd3fe1f765a9",
-    "lastParsed": "2026-06-10T16:58:48.761Z"
+    "lastParsed": "2026-06-10T17:07:12.017Z"
   }
 }
