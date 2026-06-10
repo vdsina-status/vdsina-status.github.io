@@ -1,371 +1,756 @@
-{
-  "checkedAt": "2026-06-10T16:09:24.731Z",
-  "incidentStart": "2026-06-02T13:54:00Z",
-  "summary": {
-    "endpointsUp": 5,
-    "endpointsTotal": 19,
-    "dnsResolved": 3,
-    "dnsTotal": 10,
-    "bgpV4Prefixes": 368,
-    "bgpV6Prefixes": 3
-  },
-  "endpoints": [
-    {
-      "id": "api-root",
-      "url": "https://api.vdsina.com/",
-      "label": "API Root",
-      "category": "api",
-      "httpCode": 0,
-      "responseMs": 10006,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": 20,
-      "checkedAt": "2026-06-10T16:07:11.919Z"
-    },
-    {
-      "id": "api-v1",
-      "url": "https://api.vdsina.com/v1",
-      "label": "API /v1",
-      "category": "api",
-      "httpCode": 0,
-      "responseMs": 10011,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": 20,
-      "checkedAt": "2026-06-10T16:07:11.993Z"
-    },
-    {
-      "id": "api-v1-account",
-      "url": "https://api.vdsina.com/v1/account",
-      "label": "API /v1/account",
-      "category": "api",
-      "httpCode": 0,
-      "responseMs": 10010,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": 20,
-      "checkedAt": "2026-06-10T16:07:11.993Z"
-    },
-    {
-      "id": "api-v1-server",
-      "url": "https://api.vdsina.com/v1/server",
-      "label": "API /v1/server",
-      "category": "api",
-      "httpCode": 0,
-      "responseMs": 10010,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": 20,
-      "checkedAt": "2026-06-10T16:07:11.994Z"
-    },
-    {
-      "id": "api-v1-auth",
-      "url": "https://api.vdsina.com/v1/auth",
-      "label": "API /v1/auth",
-      "category": "api",
-      "httpCode": 0,
-      "responseMs": 10009,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": 20,
-      "checkedAt": "2026-06-10T16:07:11.994Z"
-    },
-    {
-      "id": "cp",
-      "url": "https://cp.vdsina.com/",
-      "label": "CP (Status Page)",
-      "category": "panel",
-      "httpCode": 200,
-      "responseMs": 687,
-      "up": true,
-      "redirect": null,
-      "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
-      "error": null,
-      "checkedAt": "2026-06-10T16:07:02.674Z"
-    },
-    {
-      "id": "cp-login",
-      "url": "https://cp.vdsina.com/login",
-      "label": "CP Login",
-      "category": "panel",
-      "httpCode": 200,
-      "responseMs": 680,
-      "up": true,
-      "redirect": null,
-      "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
-      "error": null,
-      "checkedAt": "2026-06-10T16:07:02.668Z"
-    },
-    {
-      "id": "panel",
-      "url": "https://panel.vdsina.com/",
-      "label": "Panel",
-      "category": "panel",
-      "httpCode": 0,
-      "responseMs": 62,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.050Z"
-    },
-    {
-      "id": "my",
-      "url": "https://my.vdsina.com/",
-      "label": "My (LK)",
-      "category": "panel",
-      "httpCode": 0,
-      "responseMs": 62,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.051Z"
-    },
-    {
-      "id": "bill",
-      "url": "https://bill.vdsina.com/",
-      "label": "Billing",
-      "category": "infra",
-      "httpCode": 0,
-      "responseMs": 111,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.102Z"
-    },
-    {
-      "id": "support",
-      "url": "https://support.vdsina.com/",
-      "label": "Support",
-      "category": "infra",
-      "httpCode": 0,
-      "responseMs": 121,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.112Z"
-    },
-    {
-      "id": "status",
-      "url": "https://status.vdsina.com/",
-      "label": "Status (Official)",
-      "category": "infra",
-      "httpCode": 0,
-      "responseMs": 184,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.176Z"
-    },
-    {
-      "id": "docs",
-      "url": "https://docs.vdsina.com/",
-      "label": "Docs",
-      "category": "infra",
-      "httpCode": 0,
-      "responseMs": 177,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.169Z"
-    },
-    {
-      "id": "auth",
-      "url": "https://auth.vdsina.com/",
-      "label": "Auth",
-      "category": "infra",
-      "httpCode": 0,
-      "responseMs": 231,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.224Z"
-    },
-    {
-      "id": "www",
-      "url": "https://www.vdsina.com/",
-      "label": "WWW (Main)",
-      "category": "site",
-      "httpCode": 200,
-      "responseMs": 738,
-      "up": true,
-      "redirect": null,
-      "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"en\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Cloud VPS/VDS servers with Windows and Linux for any task. All functions in one click: reboot, install OS, manage VDS servers. Instant activation of ordered services.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152x152\" href=\"/apple",
-      "error": null,
-      "checkedAt": "2026-06-10T16:07:02.733Z"
-    },
-    {
-      "id": "vdsina-ru",
-      "url": "https://vdsina.ru/",
-      "label": "VDSina.ru",
-      "category": "site",
-      "httpCode": 200,
-      "responseMs": 678,
-      "up": true,
-      "redirect": null,
-      "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"ru\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Облачные VPS/VDS серверы c Windows и Linux для любых задач. Все функции в один клик: перезагружайте, устанавливайте ОС, управляйте VDS серверами. Мгновенная активация заказанных услуг.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152",
-      "error": null,
-      "checkedAt": "2026-06-10T16:07:02.674Z"
-    },
-    {
-      "id": "panel-ru",
-      "url": "https://panel.vdsina.ru/",
-      "label": "Panel .ru",
-      "category": "panel",
-      "httpCode": 0,
-      "responseMs": 10001,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": 20,
-      "checkedAt": "2026-06-10T16:07:11.996Z"
-    },
-    {
-      "id": "my-ru",
-      "url": "https://my.vdsina.ru/",
-      "label": "My .ru",
-      "category": "panel",
-      "httpCode": 0,
-      "responseMs": 226,
-      "up": false,
-      "redirect": null,
-      "bodySnippet": "",
-      "error": "fetch failed",
-      "checkedAt": "2026-06-10T16:07:02.221Z"
-    },
-    {
-      "id": "api-ru",
-      "url": "https://api.vdsina.ru/",
-      "label": "API .ru",
-      "category": "api",
-      "httpCode": 302,
-      "responseMs": 579,
-      "up": true,
-      "redirect": "https://vdsina.ru/",
-      "bodySnippet": "<html>\r\n<head><title>302 Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>302 Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
-      "error": null,
-      "checkedAt": "2026-06-10T16:07:02.576Z"
-    }
-  ],
-  "dns": [
-    {
-      "domain": "api.vdsina.com",
-      "resolved": true,
-      "ips": [
-        "5.252.32.139"
-      ],
-      "error": null
-    },
-    {
-      "domain": "panel.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "my.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "cp.vdsina.com",
-      "resolved": true,
-      "ips": [
-        "5.252.32.139"
-      ],
-      "error": null
-    },
-    {
-      "domain": "bill.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "support.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "status.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "docs.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "auth.vdsina.com",
-      "resolved": false,
-      "ips": [],
-      "error": "NXDOMAIN or timeout"
-    },
-    {
-      "domain": "vdsina.com",
-      "resolved": true,
-      "ips": [
-        "5.252.32.139"
-      ],
-      "error": null
-    }
-  ],
-  "bgp": {
-    "asn": "AS216071",
-    "v4Prefixes": 368,
-    "v6Prefixes": 3,
-    "v4Ips": 94208,
-    "visibility": 327,
-    "totalPeers": 327,
-    "checkedAt": "2026-06-10T16:07:25.888Z",
-    "error": null
-  },
-  "dcHealth": {
-    "dc2": {
-      "89.110.70.1": false,
-      "89.110.100.1": false,
-      "212.34.140.1": false,
-      "94.103.88.1": true
-    },
-    "dc3": {
-      "46.151.26.1": false,
-      "109.107.170.1": true,
-      "89.124.94.90": false,
-      "77.246.102.1": false
-    },
-    "mixed": {
-      "5.35.40.1": true,
-      "77.238.239.1": false
-    }
-  },
-  "cpContent": {
-    "raw": "Service availability notice",
-    "updates": [
-      {
-        "type": "title",
-        "text": "Клиентские серверы из Датацентра 3 полностью запущены"
-      },
-      {
-        "type": "detail",
-        "text": "Клиентские серверы, ранее размещенные в Датацентре 3, полностью запущены и доступны. Временные ограничения на некоторое время могут сохраняться только для внешних HDD-дисков и системы создания резервных копий. Также продолжаются работы по восстановлению функционирования панели управления. Мы будем публиковать обновления по мере появления подтвержденной информации."
-      }
-    ],
-    "lastParsed": "2026-06-10T16:07:26.201Z"
-  }
+﻿{
+    "checkedAt":  "2026-06-10T16:49:54.913Z",
+    "incidentStart":  "2026-06-02T13:54:00Z",
+    "summary":  {
+                    "endpointsUp":  5,
+                    "endpointsTotal":  19,
+                    "dnsResolved":  3,
+                    "dnsTotal":  10,
+                    "bgpV4Prefixes":  368,
+                    "bgpV6Prefixes":  3
+                },
+    "endpoints":  [
+                      {
+                          "id":  "api-root",
+                          "url":  "https://api.vdsina.com/",
+                          "label":  "API Root",
+                          "category":  "api",
+                          "httpCode":  0,
+                          "responseMs":  10007,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  20,
+                          "checkedAt":  "2026-06-10T16:49:01.322Z"
+                      },
+                      {
+                          "id":  "api-v1",
+                          "url":  "https://api.vdsina.com/v1",
+                          "label":  "API /v1",
+                          "category":  "api",
+                          "httpCode":  0,
+                          "responseMs":  10001,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  20,
+                          "checkedAt":  "2026-06-10T16:49:01.354Z"
+                      },
+                      {
+                          "id":  "api-v1-account",
+                          "url":  "https://api.vdsina.com/v1/account",
+                          "label":  "API /v1/account",
+                          "category":  "api",
+                          "httpCode":  0,
+                          "responseMs":  10001,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  20,
+                          "checkedAt":  "2026-06-10T16:49:01.355Z"
+                      },
+                      {
+                          "id":  "api-v1-server",
+                          "url":  "https://api.vdsina.com/v1/server",
+                          "label":  "API /v1/server",
+                          "category":  "api",
+                          "httpCode":  0,
+                          "responseMs":  10001,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  20,
+                          "checkedAt":  "2026-06-10T16:49:01.356Z"
+                      },
+                      {
+                          "id":  "api-v1-auth",
+                          "url":  "https://api.vdsina.com/v1/auth",
+                          "label":  "API /v1/auth",
+                          "category":  "api",
+                          "httpCode":  0,
+                          "responseMs":  10000,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  20,
+                          "checkedAt":  "2026-06-10T16:49:01.356Z"
+                      },
+                      {
+                          "id":  "cp",
+                          "url":  "https://cp.vdsina.com/",
+                          "label":  "CP (Status Page)",
+                          "category":  "panel",
+                          "httpCode":  200,
+                          "responseMs":  420,
+                          "up":  true,
+                          "redirect":  null,
+                          "bodySnippet":  "\u003c!doctype html\u003e\n\u003chtml lang=\"en\"\u003e\n\u003chead\u003e\n  \u003cmeta charset=\"utf-8\" /\u003e\n  \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /\u003e\n  \u003ctitle data-i18n=\"meta.title\"\u003eService availability notice\u003c/title\u003e\n  \u003cmeta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" /\u003e\n  \u003cstyle\u003e\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
+                          "error":  null,
+                          "checkedAt":  "2026-06-10T16:48:51.780Z"
+                      },
+                      {
+                          "id":  "cp-login",
+                          "url":  "https://cp.vdsina.com/login",
+                          "label":  "CP Login",
+                          "category":  "panel",
+                          "httpCode":  200,
+                          "responseMs":  454,
+                          "up":  true,
+                          "redirect":  null,
+                          "bodySnippet":  "\u003c!doctype html\u003e\n\u003chtml lang=\"en\"\u003e\n\u003chead\u003e\n  \u003cmeta charset=\"utf-8\" /\u003e\n  \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /\u003e\n  \u003ctitle data-i18n=\"meta.title\"\u003eService availability notice\u003c/title\u003e\n  \u003cmeta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" /\u003e\n  \u003cstyle\u003e\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
+                          "error":  null,
+                          "checkedAt":  "2026-06-10T16:48:51.811Z"
+                      },
+                      {
+                          "id":  "panel",
+                          "url":  "https://panel.vdsina.com/",
+                          "label":  "Panel",
+                          "category":  "panel",
+                          "httpCode":  0,
+                          "responseMs":  41,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.399Z"
+                      },
+                      {
+                          "id":  "my",
+                          "url":  "https://my.vdsina.com/",
+                          "label":  "My (LK)",
+                          "category":  "panel",
+                          "httpCode":  0,
+                          "responseMs":  66,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.425Z"
+                      },
+                      {
+                          "id":  "bill",
+                          "url":  "https://bill.vdsina.com/",
+                          "label":  "Billing",
+                          "category":  "infra",
+                          "httpCode":  0,
+                          "responseMs":  95,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.455Z"
+                      },
+                      {
+                          "id":  "support",
+                          "url":  "https://support.vdsina.com/",
+                          "label":  "Support",
+                          "category":  "infra",
+                          "httpCode":  0,
+                          "responseMs":  108,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.469Z"
+                      },
+                      {
+                          "id":  "status",
+                          "url":  "https://status.vdsina.com/",
+                          "label":  "Status (Official)",
+                          "category":  "infra",
+                          "httpCode":  0,
+                          "responseMs":  147,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.508Z"
+                      },
+                      {
+                          "id":  "docs",
+                          "url":  "https://docs.vdsina.com/",
+                          "label":  "Docs",
+                          "category":  "infra",
+                          "httpCode":  0,
+                          "responseMs":  169,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.531Z"
+                      },
+                      {
+                          "id":  "auth",
+                          "url":  "https://auth.vdsina.com/",
+                          "label":  "Auth",
+                          "category":  "infra",
+                          "httpCode":  0,
+                          "responseMs":  205,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.567Z"
+                      },
+                      {
+                          "id":  "www",
+                          "url":  "https://www.vdsina.com/",
+                          "label":  "WWW (Main)",
+                          "category":  "site",
+                          "httpCode":  200,
+                          "responseMs":  740,
+                          "up":  true,
+                          "redirect":  null,
+                          "bodySnippet":  "\u003c!DOCTYPE html\u003e\r\n\u003chtml dir=\"ltr\" lang=\"en\"\u003e\r\n\t\u003chead\u003e\r\n\t\t\u003cmeta charset=\"UTF-8\"\u003e\r\n\t\t\u003c!--[if IE]\u003e\u003cmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"\u003e\u003c![endif]--\u003e\r\n\t\t\u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"\u003e\r\n\t\t\u003cmeta name=\"description\" content=\"Cloud VPS/VDS servers with Windows and Linux for any task. All functions in one click: reboot, install OS, manage VDS servers. Instant activation of ordered services.\"\u003e\r\n\t\t\u003clink rel=\"apple-touch-icon\" sizes=\"152x152\" href=\"/apple",
+                          "error":  null,
+                          "checkedAt":  "2026-06-10T16:48:52.104Z"
+                      },
+                      {
+                          "id":  "vdsina-ru",
+                          "url":  "https://vdsina.ru/",
+                          "label":  "VDSina.ru",
+                          "category":  "site",
+                          "httpCode":  200,
+                          "responseMs":  683,
+                          "up":  true,
+                          "redirect":  null,
+                          "bodySnippet":  "\u003c!DOCTYPE html\u003e\r\n\u003chtml dir=\"ltr\" lang=\"ru\"\u003e\r\n\t\u003chead\u003e\r\n\t\t\u003cmeta charset=\"UTF-8\"\u003e\r\n\t\t\u003c!--[if IE]\u003e\u003cmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"\u003e\u003c![endif]--\u003e\r\n\t\t\u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"\u003e\r\n\t\t\u003cmeta name=\"description\" content=\"РћР±Р»Р°С‡РЅС‹Рµ VPS/VDS СЃРµСЂРІРµСЂС‹ c Windows Рё Linux РґР»СЏ Р»СЋР±С‹С… Р·Р°РґР°С‡. Р’СЃРµ С„СѓРЅРєС†РёРё РІ РѕРґРёРЅ РєР»РёРє: РїРµСЂРµР·Р°РіСЂСѓР¶Р°Р№С‚Рµ, СѓСЃС‚Р°РЅР°РІР»РёРІР°Р№С‚Рµ РћРЎ, СѓРїСЂР°РІР»СЏР№С‚Рµ VDS СЃРµСЂРІРµСЂР°РјРё. РњРіРЅРѕРІРµРЅРЅР°СЏ Р°РєС‚РёРІР°С†РёСЏ Р·Р°РєР°Р·Р°РЅРЅС‹С… СѓСЃР»СѓРі.\"\u003e\r\n\t\t\u003clink rel=\"apple-touch-icon\" sizes=\"152",
+                          "error":  null,
+                          "checkedAt":  "2026-06-10T16:48:52.046Z"
+                      },
+                      {
+                          "id":  "panel-ru",
+                          "url":  "https://panel.vdsina.ru/",
+                          "label":  "Panel .ru",
+                          "category":  "panel",
+                          "httpCode":  0,
+                          "responseMs":  10001,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  20,
+                          "checkedAt":  "2026-06-10T16:49:01.365Z"
+                      },
+                      {
+                          "id":  "my-ru",
+                          "url":  "https://my.vdsina.ru/",
+                          "label":  "My .ru",
+                          "category":  "panel",
+                          "httpCode":  0,
+                          "responseMs":  188,
+                          "up":  false,
+                          "redirect":  null,
+                          "bodySnippet":  "",
+                          "error":  "fetch failed",
+                          "checkedAt":  "2026-06-10T16:48:51.552Z"
+                      },
+                      {
+                          "id":  "api-ru",
+                          "url":  "https://api.vdsina.ru/",
+                          "label":  "API .ru",
+                          "category":  "api",
+                          "httpCode":  302,
+                          "responseMs":  508,
+                          "up":  true,
+                          "redirect":  "https://vdsina.ru/",
+                          "bodySnippet":  "\u003chtml\u003e\r\n\u003chead\u003e\u003ctitle\u003e302 Found\u003c/title\u003e\u003c/head\u003e\r\n\u003cbody bgcolor=\"white\"\u003e\r\n\u003ccenter\u003e\u003ch1\u003e302 Found\u003c/h1\u003e\u003c/center\u003e\r\n\u003chr\u003e\u003ccenter\u003enginx\u003c/center\u003e\r\n\u003c/body\u003e\r\n\u003c/html\u003e\r\n",
+                          "error":  null,
+                          "checkedAt":  "2026-06-10T16:48:51.872Z"
+                      }
+                  ],
+    "dns":  [
+                {
+                    "domain":  "api.vdsina.com",
+                    "resolved":  true,
+                    "ips":  [
+                                "5.252.32.139"
+                            ],
+                    "error":  null
+                },
+                {
+                    "domain":  "panel.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "my.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "cp.vdsina.com",
+                    "resolved":  true,
+                    "ips":  [
+                                "5.252.32.139"
+                            ],
+                    "error":  null
+                },
+                {
+                    "domain":  "bill.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "support.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "status.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "docs.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "auth.vdsina.com",
+                    "resolved":  false,
+                    "ips":  [
+
+                            ],
+                    "error":  "NXDOMAIN or timeout"
+                },
+                {
+                    "domain":  "vdsina.com",
+                    "resolved":  true,
+                    "ips":  [
+                                "5.252.32.139"
+                            ],
+                    "error":  null
+                }
+            ],
+    "bgp":  {
+                "asn":  "AS216071",
+                "v4Prefixes":  368,
+                "v6Prefixes":  3,
+                "v4Ips":  94208,
+                "visibility":  327,
+                "totalPeers":  327,
+                "checkedAt":  "2026-06-10T16:49:15.742Z",
+                "error":  null
+            },
+    "dcHealth":  {
+                     "dc2":  {
+                                 "89.110.70.1":  false,
+                                 "89.110.100.1":  false,
+                                 "212.34.140.1":  false,
+                                 "94.103.88.1":  false
+                             },
+                     "dc3":  {
+                                 "46.151.26.1":  false,
+                                 "109.107.170.1":  false,
+                                 "89.124.94.90":  false,
+                                 "77.246.102.1":  false
+                             },
+                     "mixed":  {
+                                   "5.35.40.1":  false,
+                                   "77.238.239.1":  false
+                               }
+                 },
+    "cpContent":  {
+                      "raw":  "Service availability notice",
+                      "updates":  [
+                                      {
+                                          "type":  "title",
+                                          "text":  "РљР»РёРµРЅС‚СЃРєРёРµ СЃРµСЂРІРµСЂС‹ РёР· Р”Р°С‚Р°С†РµРЅС‚СЂР° 3 РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РїСѓС‰РµРЅС‹"
+                                      },
+                                      {
+                                          "type":  "detail",
+                                          "text":  "РљР»РёРµРЅС‚СЃРєРёРµ СЃРµСЂРІРµСЂС‹, СЂР°РЅРµРµ СЂР°Р·РјРµС‰РµРЅРЅС‹Рµ РІ Р”Р°С‚Р°С†РµРЅС‚СЂРµ 3, РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РїСѓС‰РµРЅС‹ Рё РґРѕСЃС‚СѓРїРЅС‹. Р’СЂРµРјРµРЅРЅС‹Рµ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ РЅР° РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ РјРѕРіСѓС‚ СЃРѕС…СЂР°РЅСЏС‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ РІРЅРµС€РЅРёС… HDD-РґРёСЃРєРѕРІ Рё СЃРёСЃС‚РµРјС‹ СЃРѕР·РґР°РЅРёСЏ СЂРµР·РµСЂРІРЅС‹С… РєРѕРїРёР№. РўР°РєР¶Рµ РїСЂРѕРґРѕР»Р¶Р°СЋС‚СЃСЏ СЂР°Р±РѕС‚С‹ РїРѕ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЋ С„СѓРЅРєС†РёРѕРЅРёСЂРѕРІР°РЅРёСЏ РїР°РЅРµР»Рё СѓРїСЂР°РІР»РµРЅРёСЏ. РњС‹ Р±СѓРґРµРј РїСѓР±Р»РёРєРѕРІР°С‚СЊ РѕР±РЅРѕРІР»РµРЅРёСЏ РїРѕ РјРµСЂРµ РїРѕСЏРІР»РµРЅРёСЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё."
+                                      }
+                                  ],
+                      "lastParsed":  "2026-06-10T16:49:16.359Z"
+                  },
+    "rangeStatus":  [
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "109.107.176.0/24",
+                            "prefixCount":  16,
+                            "ip":  "109.107.176.5",
+                            "banner":  "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8",
+                            "status":  "ALIVE",
+                            "range":  "109.107.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "109.234.36.0/24",
+                            "prefixCount":  7,
+                            "ip":  "109.234.36.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
+                            "status":  "ALIVE",
+                            "range":  "109.234.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "141.163.123.0/24",
+                            "prefixCount":  16,
+                            "ip":  "141.163.123.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "141.163.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "144.124.224.0/24",
+                            "prefixCount":  32,
+                            "ip":  "144.124.224.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "144.124.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "146.103.120.0/24",
+                            "prefixCount":  32,
+                            "ip":  "146.103.120.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "146.103.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "178.130.42.0/24",
+                            "prefixCount":  4,
+                            "ip":  "178.130.42.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "178.130.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "178.217.102.0/24",
+                            "prefixCount":  1,
+                            "ip":  "178.217.102.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "178.217.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "185.121.233.0/24",
+                            "prefixCount":  4,
+                            "ip":  "185.121.233.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "185.121.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "185.157.214.0/24",
+                            "prefixCount":  4,
+                            "ip":  "185.157.214.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "185.157.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "185.21.12.0/24",
+                            "prefixCount":  4,
+                            "ip":  "185.21.12.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "185.21.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "185.245.104.0/24",
+                            "prefixCount":  4,
+                            "ip":  "185.245.104.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "185.245.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "193.178.172.0/24",
+                            "prefixCount":  3,
+                            "ip":  "193.178.172.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "193.178.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "193.33.195.0/24",
+                            "prefixCount":  2,
+                            "ip":  "193.33.195.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
+                            "status":  "ALIVE",
+                            "range":  "193.33.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "194.164.32.0/24",
+                            "prefixCount":  4,
+                            "ip":  "194.164.32.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "194.164.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "194.246.82.0/24",
+                            "prefixCount":  3,
+                            "ip":  "194.246.82.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "194.246.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "194.60.132.0/24",
+                            "prefixCount":  4,
+                            "ip":  "194.60.132.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "194.60.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "195.2.93.0/24",
+                            "prefixCount":  3,
+                            "ip":  "195.2.93.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.2",
+                            "status":  "ALIVE",
+                            "range":  "195.2.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "195.200.26.0/24",
+                            "prefixCount":  10,
+                            "ip":  "195.200.26.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "195.200.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "195.26.225.0/24",
+                            "prefixCount":  4,
+                            "ip":  "195.26.225.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "195.26.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "195.63.176.0/24",
+                            "prefixCount":  64,
+                            "ip":  "195.63.176.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "195.63.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "212.111.80.0/24",
+                            "prefixCount":  5,
+                            "ip":  "212.111.80.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "212.111.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "212.118.55.0/24",
+                            "prefixCount":  12,
+                            "ip":  "212.118.55.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
+                            "status":  "ALIVE",
+                            "range":  "212.118.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "212.34.154.0/24",
+                            "prefixCount":  28,
+                            "ip":  "212.34.154.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "212.34.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "46.149.78.0/24",
+                            "prefixCount":  8,
+                            "ip":  "46.149.78.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
+                            "status":  "ALIVE",
+                            "range":  "46.149.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "46.151.30.0/24",
+                            "prefixCount":  8,
+                            "ip":  "46.151.30.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
+                            "status":  "ALIVE",
+                            "range":  "46.151.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "5.35.69.0/24",
+                            "prefixCount":  15,
+                            "ip":  "5.35.69.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "5.35.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "62.84.98.0/24",
+                            "prefixCount":  8,
+                            "ip":  "62.84.98.5",
+                            "banner":  "SSH-2.0-OpenSSH_7.4",
+                            "status":  "ALIVE",
+                            "range":  "62.84.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "77.105.142.0/24",
+                            "prefixCount":  8,
+                            "ip":  "77.105.142.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "77.105.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "77.238.245.0/24",
+                            "prefixCount":  32,
+                            "ip":  "77.238.245.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "77.238.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "77.246.107.0/24",
+                            "prefixCount":  16,
+                            "ip":  "77.246.107.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
+                            "status":  "ALIVE",
+                            "range":  "77.246.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "78.40.194.0/24",
+                            "prefixCount":  8,
+                            "ip":  "78.40.194.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11",
+                            "status":  "ALIVE",
+                            "range":  "78.40.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "80.85.245.0/24",
+                            "prefixCount":  4,
+                            "ip":  "80.85.245.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "80.85.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "87.199.200.0/24",
+                            "prefixCount":  64,
+                            "ip":  "87.199.200.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "87.199.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "88.210.13.0/24",
+                            "prefixCount":  8,
+                            "ip":  "88.210.13.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
+                            "status":  "ALIVE",
+                            "range":  "88.210.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "89.110.83.0/24",
+                            "prefixCount":  52,
+                            "ip":  "89.110.83.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "89.110.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "89.124.75.0/24",
+                            "prefixCount":  64,
+                            "ip":  "89.124.75.5",
+                            "banner":  "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u7",
+                            "status":  "ALIVE",
+                            "range":  "89.124.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "91.201.113.0/24",
+                            "prefixCount":  4,
+                            "ip":  "91.201.113.5",
+                            "banner":  "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16",
+                            "status":  "ALIVE",
+                            "range":  "91.201.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "91.246.41.0/24",
+                            "prefixCount":  1,
+                            "ip":  "91.246.41.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "91.246.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "91.84.116.0/24",
+                            "prefixCount":  32,
+                            "ip":  "91.84.116.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "91.84.x.x"
+                        },
+                        {
+                            "alive":  false,
+                            "firstPrefix":  "93.183.125.0/24",
+                            "prefixCount":  8,
+                            "ip":  "93.183.125.5",
+                            "banner":  "",
+                            "status":  "DEAD",
+                            "range":  "93.183.x.x"
+                        },
+                        {
+                            "alive":  true,
+                            "firstPrefix":  "94.103.95.0/24",
+                            "prefixCount":  5,
+                            "ip":  "94.103.95.5",
+                            "banner":  "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11",
+                            "status":  "ALIVE",
+                            "range":  "94.103.x.x"
+                        }
+                    ]
 }

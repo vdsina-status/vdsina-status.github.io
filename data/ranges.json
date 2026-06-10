@@ -1,0 +1,248 @@
+﻿[
+    {
+        "Range":  "109.107.x.x",
+        "Count":  16,
+        "SampleIP":  "109.107.176.1",
+        "FirstPrefix":  "109.107.176.0/24"
+    },
+    {
+        "Range":  "109.234.x.x",
+        "Count":  7,
+        "SampleIP":  "109.234.36.1",
+        "FirstPrefix":  "109.234.36.0/24"
+    },
+    {
+        "Range":  "141.163.x.x",
+        "Count":  16,
+        "SampleIP":  "141.163.123.1",
+        "FirstPrefix":  "141.163.123.0/24"
+    },
+    {
+        "Range":  "144.124.x.x",
+        "Count":  32,
+        "SampleIP":  "144.124.224.1",
+        "FirstPrefix":  "144.124.224.0/24"
+    },
+    {
+        "Range":  "146.103.x.x",
+        "Count":  32,
+        "SampleIP":  "146.103.120.1",
+        "FirstPrefix":  "146.103.120.0/24"
+    },
+    {
+        "Range":  "178.130.x.x",
+        "Count":  4,
+        "SampleIP":  "178.130.42.1",
+        "FirstPrefix":  "178.130.42.0/24"
+    },
+    {
+        "Range":  "178.217.x.x",
+        "Count":  1,
+        "SampleIP":  "178.217.102.1",
+        "FirstPrefix":  "178.217.102.0/24"
+    },
+    {
+        "Range":  "185.121.x.x",
+        "Count":  4,
+        "SampleIP":  "185.121.233.1",
+        "FirstPrefix":  "185.121.233.0/24"
+    },
+    {
+        "Range":  "185.157.x.x",
+        "Count":  4,
+        "SampleIP":  "185.157.214.1",
+        "FirstPrefix":  "185.157.214.0/24"
+    },
+    {
+        "Range":  "185.21.x.x",
+        "Count":  4,
+        "SampleIP":  "185.21.12.1",
+        "FirstPrefix":  "185.21.12.0/24"
+    },
+    {
+        "Range":  "185.245.x.x",
+        "Count":  4,
+        "SampleIP":  "185.245.104.1",
+        "FirstPrefix":  "185.245.104.0/24"
+    },
+    {
+        "Range":  "193.178.x.x",
+        "Count":  3,
+        "SampleIP":  "193.178.172.1",
+        "FirstPrefix":  "193.178.172.0/24"
+    },
+    {
+        "Range":  "193.33.x.x",
+        "Count":  2,
+        "SampleIP":  "193.33.195.1",
+        "FirstPrefix":  "193.33.195.0/24"
+    },
+    {
+        "Range":  "194.164.x.x",
+        "Count":  4,
+        "SampleIP":  "194.164.32.1",
+        "FirstPrefix":  "194.164.32.0/24"
+    },
+    {
+        "Range":  "194.246.x.x",
+        "Count":  3,
+        "SampleIP":  "194.246.82.1",
+        "FirstPrefix":  "194.246.82.0/24"
+    },
+    {
+        "Range":  "194.60.x.x",
+        "Count":  4,
+        "SampleIP":  "194.60.132.1",
+        "FirstPrefix":  "194.60.132.0/24"
+    },
+    {
+        "Range":  "195.2.x.x",
+        "Count":  3,
+        "SampleIP":  "195.2.93.1",
+        "FirstPrefix":  "195.2.93.0/24"
+    },
+    {
+        "Range":  "195.200.x.x",
+        "Count":  10,
+        "SampleIP":  "195.200.26.1",
+        "FirstPrefix":  "195.200.26.0/24"
+    },
+    {
+        "Range":  "195.26.x.x",
+        "Count":  4,
+        "SampleIP":  "195.26.225.1",
+        "FirstPrefix":  "195.26.225.0/24"
+    },
+    {
+        "Range":  "195.63.x.x",
+        "Count":  64,
+        "SampleIP":  "195.63.176.1",
+        "FirstPrefix":  "195.63.176.0/24"
+    },
+    {
+        "Range":  "212.111.x.x",
+        "Count":  5,
+        "SampleIP":  "212.111.80.1",
+        "FirstPrefix":  "212.111.80.0/24"
+    },
+    {
+        "Range":  "212.118.x.x",
+        "Count":  12,
+        "SampleIP":  "212.118.55.1",
+        "FirstPrefix":  "212.118.55.0/24"
+    },
+    {
+        "Range":  "212.34.x.x",
+        "Count":  28,
+        "SampleIP":  "212.34.154.1",
+        "FirstPrefix":  "212.34.154.0/24"
+    },
+    {
+        "Range":  "46.149.x.x",
+        "Count":  8,
+        "SampleIP":  "46.149.78.1",
+        "FirstPrefix":  "46.149.78.0/24"
+    },
+    {
+        "Range":  "46.151.x.x",
+        "Count":  8,
+        "SampleIP":  "46.151.30.1",
+        "FirstPrefix":  "46.151.30.0/24"
+    },
+    {
+        "Range":  "5.35.x.x",
+        "Count":  15,
+        "SampleIP":  "5.35.69.1",
+        "FirstPrefix":  "5.35.69.0/24"
+    },
+    {
+        "Range":  "62.84.x.x",
+        "Count":  8,
+        "SampleIP":  "62.84.98.1",
+        "FirstPrefix":  "62.84.98.0/24"
+    },
+    {
+        "Range":  "77.105.x.x",
+        "Count":  8,
+        "SampleIP":  "77.105.142.1",
+        "FirstPrefix":  "77.105.142.0/24"
+    },
+    {
+        "Range":  "77.238.x.x",
+        "Count":  32,
+        "SampleIP":  "77.238.245.1",
+        "FirstPrefix":  "77.238.245.0/24"
+    },
+    {
+        "Range":  "77.246.x.x",
+        "Count":  16,
+        "SampleIP":  "77.246.107.1",
+        "FirstPrefix":  "77.246.107.0/24"
+    },
+    {
+        "Range":  "78.40.x.x",
+        "Count":  8,
+        "SampleIP":  "78.40.194.1",
+        "FirstPrefix":  "78.40.194.0/24"
+    },
+    {
+        "Range":  "80.85.x.x",
+        "Count":  4,
+        "SampleIP":  "80.85.245.1",
+        "FirstPrefix":  "80.85.245.0/24"
+    },
+    {
+        "Range":  "87.199.x.x",
+        "Count":  64,
+        "SampleIP":  "87.199.200.1",
+        "FirstPrefix":  "87.199.200.0/24"
+    },
+    {
+        "Range":  "88.210.x.x",
+        "Count":  8,
+        "SampleIP":  "88.210.13.1",
+        "FirstPrefix":  "88.210.13.0/24"
+    },
+    {
+        "Range":  "89.110.x.x",
+        "Count":  52,
+        "SampleIP":  "89.110.83.1",
+        "FirstPrefix":  "89.110.83.0/24"
+    },
+    {
+        "Range":  "89.124.x.x",
+        "Count":  64,
+        "SampleIP":  "89.124.75.1",
+        "FirstPrefix":  "89.124.75.0/24"
+    },
+    {
+        "Range":  "91.201.x.x",
+        "Count":  4,
+        "SampleIP":  "91.201.113.1",
+        "FirstPrefix":  "91.201.113.0/24"
+    },
+    {
+        "Range":  "91.246.x.x",
+        "Count":  1,
+        "SampleIP":  "91.246.41.1",
+        "FirstPrefix":  "91.246.41.0/24"
+    },
+    {
+        "Range":  "91.84.x.x",
+        "Count":  32,
+        "SampleIP":  "91.84.116.1",
+        "FirstPrefix":  "91.84.116.0/24"
+    },
+    {
+        "Range":  "93.183.x.x",
+        "Count":  8,
+        "SampleIP":  "93.183.125.1",
+        "FirstPrefix":  "93.183.125.0/24"
+    },
+    {
+        "Range":  "94.103.x.x",
+        "Count":  5,
+        "SampleIP":  "94.103.95.1",
+        "FirstPrefix":  "94.103.95.0/24"
+    }
+]

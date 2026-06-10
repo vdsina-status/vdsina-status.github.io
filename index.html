@@ -110,10 +110,18 @@ canvas{width:100%;height:160px;margin-top:10px}
   </div>
 </div>
 
+<!-- IP Ranges -->
+<div class="cd fs" style="margin-top:16px">
+  <div class="ct"><div class="ic" style="background:var(--bbg);color:var(--b)">📡</div>IP-диапазоны AS216071 — доступность серверов (SSH banner)</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Проверка реальных VM по SSH-баннеру (не гейтвеи). TCP-порты открыты везде через StormWall, но SSH-баннер отдают только живые серверы.</p>
+  <div id="rangeGrid" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"></div>
+  <div id="rangeSummary" style="font-size:13px;color:var(--muted)"></div>
+</div>
+
 <!-- DC Health + IP Lookup -->
 <div class="g2" style="margin-top:16px">
   <div class="cd">
-    <div class="ct"><div class="ic" style="background:var(--ybg);color:var(--y)">🏢</div>Датацентры — доступность</div>
+    <div class="ct"><div class="ic" style="background:var(--ybg);color:var(--y)">🏢</div>DC Sample — SSH доступность</div>
     <div id="dcHealth"></div>
   </div>
   <div class="cd">
@@ -287,6 +295,24 @@ function render(data){
     `<div class="ar"><span class="al">IPv4 IPs</span><span class="av">${(bgp.v4Ips||0).toLocaleString()}</span></div>`+
     `<div class="ar"><span class="al">Видимость (RIS peers)</span><span class="av">${bgp.visibility}/${bgp.totalPeers}</span></div>`+
     (bgp.error?`<div class="ar"><span class="al">Ошибка</span><span class="av red">${bgp.error}</span></div>`:'');
+
+  // Range status
+  const ranges=data.rangeStatus||[];
+  if(ranges.length){
+    const rAlive=ranges.filter(r=>r.alive).length;
+    const rDead=ranges.filter(r=>!r.alive).length;
+    const totalPfx=ranges.reduce((s,r)=>s+r.prefixCount,0);
+    const alivePfx=ranges.filter(r=>r.alive).reduce((s,r)=>s+r.prefixCount,0);
+    document.getElementById('rangeSummary').innerHTML=
+      `<b style="color:var(--g)">${rAlive}</b> диапазонов живы · <b style="color:var(--r)">${rDead}</b> мертвы · Префиксов: <b style="color:var(--g)">${alivePfx}</b> живых / <b>${totalPfx}</b> всего`;
+    let rgHtml='';
+    for(const r of ranges.sort((a,b)=>a.range.localeCompare(b.range))){
+      const cls=r.alive?'on':'off';
+      const tip=r.alive?`${r.banner}`:`DEAD — нет SSH-баннера`;
+      rgHtml+=`<div class="pc ${cls}" title="${tip}"><div class="dt"></div>${r.range} <span style="font-size:10px;color:var(--muted)">(${r.prefixCount})</span></div>`;
+    }
+    document.getElementById('rangeGrid').innerHTML=rgHtml;
+  }
 
   // DC Health
   const dc=data.dcHealth||{};

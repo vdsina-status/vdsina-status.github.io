@@ -104,17 +104,48 @@ async function checkBGP(asn) {
   }
 }
 
-// ─── TCP ping (sample IPs per DC) ────────────────────────────
-function tcpPing(ip, port = 80) {
-  try {
-    const out = execSync(
-      `powershell -NoProfile -Command "$r = Test-NetConnection '${ip}' -Port ${port} -WarningAction SilentlyContinue; Write-Host $r.TcpTestSucceeded"`,
-      { timeout: 12000, encoding: 'utf8' }
-    ).trim();
-    return out === 'True';
-  } catch {
-    return false;
+// ─── SSH banner check (real VM alive detection) ─────────────
+import net from 'net';
+
+function sshBannerCheck(ip, timeoutMs = 5000) {
+  return new Promise(resolve => {
+    const sock = net.createConnection({ host: ip, port: 22 });
+    let banner = '';
+    const timer = setTimeout(() => { sock.destroy(); resolve({ ip, alive: false, banner: '' }); }, timeoutMs);
+    sock.on('data', d => { banner += d.toString(); sock.destroy(); });
+    sock.on('close', () => { clearTimeout(timer); resolve({ ip, alive: banner.startsWith('SSH-'), banner: banner.trim().slice(0, 80) }); });
+    sock.on('error', () => { clearTimeout(timer); resolve({ ip, alive: false, banner: '' }); });
+  });
+}
+
+async function checkRanges() {
+  const RANGE_FILE = path.join(DATA, 'ranges-status.json');
+  let rangeConfig;
+  try { rangeConfig = JSON.parse(fs.readFileSync(RANGE_FILE, 'utf8')); } catch { return null; }
+  
+  const probeIPs = rangeConfig.map(r => {
+    const base = r.firstPrefix.replace(/\/\d+$/, '');
+    const oct = base.split('.');
+    return { range: r.range, prefixCount: r.prefixCount, ip: `${oct[0]}.${oct[1]}.${oct[2]}.5` };
+  });
+  
+  const BATCH = 10;
+  const results = [];
+  for (let i = 0; i < probeIPs.length; i += BATCH) {
+    const batch = probeIPs.slice(i, i + BATCH);
+    const checks = await Promise.all(batch.map(p => sshBannerCheck(p.ip)));
+    for (let j = 0; j < batch.length; j++) {
+      results.push({
+        range: batch[j].range,
+        prefixCount: batch[j].prefixCount,
+        ip: batch[j].ip,
+        alive: checks[j].alive,
+        banner: checks[j].banner,
+        status: checks[j].alive ? 'ALIVE' : 'DEAD'
+      });
+    }
   }
+  return results;
 }
 
 function checkDCHealth() {
@@ -122,7 +153,15 @@ function checkDCHealth() {
   for (const [dc, ips] of Object.entries(CONFIG.sampleIPs)) {
     results[dc] = {};
     for (const ip of ips) {
-      results[dc][ip] = tcpPing(ip, 80);
+      try {
+        const out = execSync(
+          `powershell -NoProfile -Command "$tcp=New-Object Net.Sockets.TcpClient;$ar=$tcp.BeginConnect('${ip}',22,$null,$null);$ok=$ar.AsyncWaitHandle.WaitOne(4000,$false);if($ok-and$tcp.Connected){$s=$tcp.GetStream();$s.ReadTimeout=3000;$b=New-Object byte[] 64;try{$n=$s.Read($b,0,64);Write-Host([Text.Encoding]::ASCII.GetString($b,0,$n).Trim())}catch{Write-Host 'NO_BANNER'}};$tcp.Close()"`,
+          { timeout: 10000, encoding: 'utf8' }
+        ).trim();
+        results[dc][ip] = out.startsWith('SSH-');
+      } catch {
+        results[dc][ip] = false;
+      }
     }
   }
   return results;
@@ -309,12 +348,20 @@ async function main() {
   const cpContent = parseCpContent('', cpBody);
   console.log(`  CP title: "${cpContent.raw}", updates: ${cpContent.updates.length}`);
 
-  // 5. DC health (TCP pings)
-  console.log('  Checking DC health...');
+  // 5. DC health (SSH banner check)
+  console.log('  Checking DC health (SSH banners)...');
   const dcHealth = checkDCHealth();
   for (const [dc, results] of Object.entries(dcHealth)) {
     const alive = Object.values(results).filter(Boolean).length;
     console.log(`  ${dc}: ${alive}/${Object.keys(results).length} reachable`);
+  }
+
+  // 5b. Range scan (SSH banner on all 41 /16 groups)
+  console.log('  Scanning IP ranges (SSH banners)...');
+  const rangeStatus = await checkRanges();
+  if (rangeStatus) {
+    const rAlive = rangeStatus.filter(r => r.alive).length;
+    console.log(`  Ranges: ${rAlive}/${rangeStatus.length} alive`);
   }
 
   // 6. Build status object
@@ -333,6 +380,7 @@ async function main() {
     dns,
     bgp,
     dcHealth,
+    rangeStatus,
     cpContent
   };
 
