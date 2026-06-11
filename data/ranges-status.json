@@ -1320,8 +1320,8 @@
       },
       {
         "ip": "5.35.34.50",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "5.35.47.5",
@@ -1344,9 +1344,9 @@
         "banner": ""
       }
     ],
-    "alive": 1,
+    "alive": 2,
     "total": 8,
-    "percent": 13,
+    "percent": 25,
     "dc": "DC2 (partial)",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
     "status": "PARTIAL"
