@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-11T08:23:38.245Z",
+  "checkedAt": "2026-06-11T08:24:39.677Z",
   "incidentStart": "2026-06-02T13:54:00Z",
   "summary": {
     "endpointsUp": 5,
@@ -8,7 +8,7 @@
     "dnsTotal": 10,
     "bgpV4Prefixes": 368,
     "bgpV6Prefixes": 3,
-    "rangesAlive": 19,
+    "rangesAlive": 20,
     "rangesTotal": 41
   },
   "endpoints": [
@@ -18,12 +18,12 @@
       "label": "API Root",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10558,
+      "responseMs": 10556,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T08:23:02.328Z"
+      "checkedAt": "2026-06-11T08:24:13.645Z"
     },
     {
       "id": "api-v1",
@@ -31,12 +31,12 @@
       "label": "API /v1",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10492,
+      "responseMs": 10496,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T08:23:02.310Z"
+      "checkedAt": "2026-06-11T08:24:13.618Z"
     },
     {
       "id": "api-v1-account",
@@ -44,12 +44,12 @@
       "label": "API /v1/account",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10518,
+      "responseMs": 10491,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T08:23:02.336Z"
+      "checkedAt": "2026-06-11T08:24:13.614Z"
     },
     {
       "id": "api-v1-server",
@@ -57,12 +57,12 @@
       "label": "API /v1/server",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10270,
+      "responseMs": 10500,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T08:23:02.089Z"
+      "checkedAt": "2026-06-11T08:24:13.624Z"
     },
     {
       "id": "api-v1-auth",
@@ -70,12 +70,12 @@
       "label": "API /v1/auth",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10490,
+      "responseMs": 10488,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T08:23:02.310Z"
+      "checkedAt": "2026-06-11T08:24:13.613Z"
     },
     {
       "id": "cp",
@@ -83,12 +83,12 @@
       "label": "CP (Status Page)",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 526,
+      "responseMs": 598,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
       "error": null,
-      "checkedAt": "2026-06-11T08:22:52.353Z"
+      "checkedAt": "2026-06-11T08:24:03.725Z"
     },
     {
       "id": "cp-login",
@@ -96,12 +96,12 @@
       "label": "CP Login",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 604,
+      "responseMs": 515,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
       "error": null,
-      "checkedAt": "2026-06-11T08:22:52.428Z"
+      "checkedAt": "2026-06-11T08:24:03.643Z"
     },
     {
       "id": "panel",
@@ -109,12 +109,12 @@
       "label": "Panel",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 68,
+      "responseMs": 31,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:51.892Z"
+      "checkedAt": "2026-06-11T08:24:03.158Z"
     },
     {
       "id": "my",
@@ -122,12 +122,12 @@
       "label": "My (LK)",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 100,
+      "responseMs": 53,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:51.925Z"
+      "checkedAt": "2026-06-11T08:24:03.181Z"
     },
     {
       "id": "bill",
@@ -135,12 +135,12 @@
       "label": "Billing",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 143,
+      "responseMs": 69,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:51.970Z"
+      "checkedAt": "2026-06-11T08:24:03.199Z"
     },
     {
       "id": "support",
@@ -148,12 +148,12 @@
       "label": "Support",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 157,
+      "responseMs": 106,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:51.985Z"
+      "checkedAt": "2026-06-11T08:24:03.237Z"
     },
     {
       "id": "status",
@@ -161,12 +161,12 @@
       "label": "Status (Official)",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 202,
+      "responseMs": 120,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:52.031Z"
+      "checkedAt": "2026-06-11T08:24:03.251Z"
     },
     {
       "id": "docs",
@@ -174,12 +174,12 @@
       "label": "Docs",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 200,
+      "responseMs": 144,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:52.030Z"
+      "checkedAt": "2026-06-11T08:24:03.276Z"
     },
     {
       "id": "auth",
@@ -187,12 +187,12 @@
       "label": "Auth",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 261,
+      "responseMs": 171,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:52.091Z"
+      "checkedAt": "2026-06-11T08:24:03.303Z"
     },
     {
       "id": "www",
@@ -200,12 +200,12 @@
       "label": "WWW (Main)",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 812,
+      "responseMs": 684,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"en\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Cloud VPS/VDS servers with Windows and Linux for any task. All functions in one click: reboot, install OS, manage VDS servers. Instant activation of ordered services.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152x152\" href=\"/apple",
       "error": null,
-      "checkedAt": "2026-06-11T08:22:52.644Z"
+      "checkedAt": "2026-06-11T08:24:03.818Z"
     },
     {
       "id": "vdsina-ru",
@@ -213,12 +213,12 @@
       "label": "VDSina.ru",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 685,
+      "responseMs": 601,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"ru\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Облачные VPS/VDS серверы c Windows и Linux для любых задач. Все функции в один клик: перезагружайте, устанавливайте ОС, управляйте VDS серверами. Мгновенная активация заказанных услуг.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152",
       "error": null,
-      "checkedAt": "2026-06-11T08:22:52.518Z"
+      "checkedAt": "2026-06-11T08:24:03.735Z"
     },
     {
       "id": "panel-ru",
@@ -226,12 +226,12 @@
       "label": "Panel .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 10662,
+      "responseMs": 10602,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:23:02.494Z"
+      "checkedAt": "2026-06-11T08:24:13.735Z"
     },
     {
       "id": "my-ru",
@@ -239,12 +239,12 @@
       "label": "My .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 231,
+      "responseMs": 160,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T08:22:52.063Z"
+      "checkedAt": "2026-06-11T08:24:03.294Z"
     },
     {
       "id": "api-ru",
@@ -252,12 +252,12 @@
       "label": "API .ru",
       "category": "api",
       "httpCode": 302,
-      "responseMs": 527,
+      "responseMs": 471,
       "up": true,
       "redirect": "https://vdsina.ru/",
       "bodySnippet": "<html>\r\n<head><title>302 Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>302 Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T08:22:52.361Z"
+      "checkedAt": "2026-06-11T08:24:03.607Z"
     }
   ],
   "dns": [
@@ -335,7 +335,7 @@
     "v4Ips": 94208,
     "visibility": 327,
     "totalPeers": 327,
-    "checkedAt": "2026-06-11T08:23:12.075Z",
+    "checkedAt": "2026-06-11T08:24:14.002Z",
     "error": null
   },
   "rangeStatus": [
@@ -380,16 +380,16 @@
         },
         {
           "ip": "109.107.174.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_7.4"
         }
       ],
-      "alive": 3,
+      "alive": 4,
       "total": 8,
-      "percent": 38,
+      "percent": 50,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8",
-      "status": "PARTIAL"
+      "status": "ALIVE"
     },
     {
       "range": "109.234.x.x",
@@ -979,8 +979,8 @@
         },
         {
           "ip": "193.33.195.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         },
         {
           "ip": "193.33.195.50",
@@ -988,9 +988,9 @@
           "banner": "SSH-2.0-OpenSSH_7.4"
         }
       ],
-      "alive": 2,
+      "alive": 3,
       "total": 4,
-      "percent": 50,
+      "percent": 75,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
       "status": "PARTIAL"
@@ -1167,8 +1167,8 @@
         },
         {
           "ip": "195.2.93.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.2"
         },
         {
           "ip": "195.2.93.50",
@@ -1176,12 +1176,12 @@
           "banner": ""
         }
       ],
-      "alive": 0,
+      "alive": 1,
       "total": 6,
-      "percent": 0,
-      "dc": "DC3 (down)",
-      "banner": "",
-      "status": "DEAD"
+      "percent": 17,
+      "dc": "DC3",
+      "banner": "SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.2",
+      "status": "PARTIAL"
     },
     {
       "range": "195.200.x.x",
@@ -1338,8 +1338,8 @@
         },
         {
           "ip": "195.63.128.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "195.63.131.5",
@@ -1352,9 +1352,9 @@
           "banner": ""
         }
       ],
-      "alive": 4,
+      "alive": 5,
       "total": 12,
-      "percent": 33,
+      "percent": 42,
       "dc": "partial",
       "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15",
       "status": "ALIVE"
@@ -1437,13 +1437,13 @@
         },
         {
           "ip": "212.118.43.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         },
         {
           "ip": "212.118.43.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u7"
         },
         {
           "ip": "212.118.36.5",
@@ -1452,16 +1452,16 @@
         },
         {
           "ip": "212.118.36.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         }
       ],
-      "alive": 2,
+      "alive": 5,
       "total": 8,
-      "percent": 25,
+      "percent": 63,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
-      "status": "PARTIAL"
+      "status": "ALIVE"
     },
     {
       "range": "212.34.x.x",
@@ -1603,8 +1603,8 @@
         },
         {
           "ip": "46.151.27.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8"
         },
         {
           "ip": "46.151.27.50",
@@ -1623,8 +1623,8 @@
         },
         {
           "ip": "46.151.25.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "46.151.25.50",
@@ -1632,9 +1632,9 @@
           "banner": ""
         }
       ],
-      "alive": 4,
+      "alive": 6,
       "total": 8,
-      "percent": 50,
+      "percent": 75,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14",
       "status": "ALIVE"
@@ -1722,8 +1722,8 @@
         },
         {
           "ip": "62.84.101.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         },
         {
           "ip": "62.84.102.5",
@@ -1736,9 +1736,9 @@
           "banner": ""
         }
       ],
-      "alive": 5,
+      "alive": 6,
       "total": 8,
-      "percent": 63,
+      "percent": 75,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
       "status": "ALIVE"
@@ -1759,8 +1759,8 @@
         },
         {
           "ip": "77.105.143.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         },
         {
           "ip": "77.105.143.50",
@@ -1769,8 +1769,8 @@
         },
         {
           "ip": "77.105.141.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "77.105.141.50",
@@ -1779,21 +1779,21 @@
         },
         {
           "ip": "77.105.139.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "77.105.139.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8"
         }
       ],
-      "alive": 2,
+      "alive": 6,
       "total": 8,
-      "percent": 25,
+      "percent": 75,
       "dc": "DC2 (partial)",
       "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u6",
-      "status": "PARTIAL"
+      "status": "ALIVE"
     },
     {
       "range": "77.238.x.x",
@@ -1873,8 +1873,8 @@
       "probes": [
         {
           "ip": "77.246.102.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15"
         },
         {
           "ip": "77.246.102.50",
@@ -1883,28 +1883,28 @@
         },
         {
           "ip": "77.246.98.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16"
         },
         {
           "ip": "77.246.98.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         },
         {
           "ip": "77.246.107.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "77.246.107.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.14"
         },
         {
           "ip": "77.246.103.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "77.246.103.50",
@@ -1912,12 +1912,12 @@
           "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u5"
         }
       ],
-      "alive": 1,
+      "alive": 7,
       "total": 8,
-      "percent": 13,
+      "percent": 88,
       "dc": "DC3",
-      "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u5",
-      "status": "PARTIAL"
+      "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15",
+      "status": "ALIVE"
     },
     {
       "range": "78.40.x.x",
@@ -1930,8 +1930,8 @@
         },
         {
           "ip": "78.40.196.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15"
         },
         {
           "ip": "78.40.193.5",
@@ -1964,9 +1964,9 @@
           "banner": ""
         }
       ],
-      "alive": 4,
+      "alive": 5,
       "total": 8,
-      "percent": 50,
+      "percent": 63,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u7",
       "status": "ALIVE"
@@ -2240,8 +2240,8 @@
         },
         {
           "ip": "89.124.111.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
         },
         {
           "ip": "89.124.91.5",
@@ -2250,8 +2250,8 @@
         },
         {
           "ip": "89.124.91.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         },
         {
           "ip": "89.124.89.5",
@@ -2265,8 +2265,8 @@
         },
         {
           "ip": "89.124.65.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16"
         },
         {
           "ip": "89.124.65.50",
@@ -2284,9 +2284,9 @@
           "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         }
       ],
-      "alive": 7,
+      "alive": 10,
       "total": 12,
-      "percent": 58,
+      "percent": 83,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14",
       "status": "ALIVE"
@@ -2317,8 +2317,8 @@
         },
         {
           "ip": "91.201.112.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3"
         },
         {
           "ip": "91.201.112.50",
@@ -2327,18 +2327,18 @@
         },
         {
           "ip": "91.201.115.5",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
         },
         {
           "ip": "91.201.115.50",
-          "alive": false,
-          "banner": ""
+          "alive": true,
+          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
         }
       ],
-      "alive": 4,
+      "alive": 7,
       "total": 8,
-      "percent": 50,
+      "percent": 88,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16",
       "status": "ALIVE"
@@ -2500,8 +2500,8 @@
         },
         {
           "ip": "94.103.80.50",
-          "alive": true,
-          "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11"
+          "alive": false,
+          "banner": ""
         },
         {
           "ip": "94.103.82.5",
@@ -2534,12 +2534,12 @@
           "banner": ""
         }
       ],
-      "alive": 4,
+      "alive": 3,
       "total": 8,
-      "percent": 50,
+      "percent": 38,
       "dc": "DC3",
       "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11",
-      "status": "ALIVE"
+      "status": "PARTIAL"
     }
   ],
   "cpContent": {
@@ -2559,6 +2559,6 @@
       }
     ],
     "hash": "5fdedd3fe1f765a9",
-    "lastParsed": "2026-06-11T08:23:12.584Z"
+    "lastParsed": "2026-06-11T08:24:14.529Z"
   }
 }
