@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-11T17:34:30.273Z",
+  "checkedAt": "2026-06-11T17:38:15.542Z",
   "incidentStart": "2026-06-02T13:54:00Z",
   "summary": {
     "endpointsUp": 5,
@@ -18,12 +18,12 @@
       "label": "API Root",
       "category": "api",
       "httpCode": 403,
-      "responseMs": 478,
+      "responseMs": 485,
       "up": false,
       "redirect": null,
-      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:34:03 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 6b13a45a51b00f23d843113b35ccfa7c</center>\r\n</html>",
+      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:37:38 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 29260a3fe016677f95aca374a502d85d</center>\r\n</html>",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:02.998Z"
+      "checkedAt": "2026-06-11T17:37:37.934Z"
     },
     {
       "id": "api-v1",
@@ -31,12 +31,12 @@
       "label": "API /v1",
       "category": "api",
       "httpCode": 403,
-      "responseMs": 444,
+      "responseMs": 454,
       "up": false,
       "redirect": null,
-      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:34:03 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: d2b05deefe9d09a21763b8de93ca54aa</center>\r\n</html>",
+      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:37:38 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 68c6250eb6baae7aed2fcb0f6380ac97</center>\r\n</html>",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:02.998Z"
+      "checkedAt": "2026-06-11T17:37:37.935Z"
     },
     {
       "id": "api-v1-account",
@@ -44,12 +44,12 @@
       "label": "API /v1/account",
       "category": "api",
       "httpCode": 403,
-      "responseMs": 442,
+      "responseMs": 453,
       "up": false,
       "redirect": null,
-      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:34:03 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 71e81c93f6c2d544f88cf73dcb75cb57</center>\r\n</html>",
+      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:37:38 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 25e4244dd0939325ce2ed9b1cf17ced6</center>\r\n</html>",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:02.997Z"
+      "checkedAt": "2026-06-11T17:37:37.934Z"
     },
     {
       "id": "api-v1-server",
@@ -57,12 +57,12 @@
       "label": "API /v1/server",
       "category": "api",
       "httpCode": 403,
-      "responseMs": 445,
+      "responseMs": 453,
       "up": false,
       "redirect": null,
-      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:34:03 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: de74d4e99892a62b957c22605bc9f8f0</center>\r\n</html>",
+      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:37:38 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: a193e1b60128485f9173692b27b3b72c</center>\r\n</html>",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:03.001Z"
+      "checkedAt": "2026-06-11T17:37:37.935Z"
     },
     {
       "id": "api-v1-auth",
@@ -70,12 +70,12 @@
       "label": "API /v1/auth",
       "category": "api",
       "httpCode": 403,
-      "responseMs": 445,
+      "responseMs": 448,
       "up": false,
       "redirect": null,
-      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:34:03 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 7f39de2ffef1abe5a6eaa1d43400079d</center>\r\n</html>",
+      "bodySnippet": "<html>\r\n<head><title>403 Blocked</title></head>\r\n<body>\r\n<center><h1>403 Blocked</h1></center>\r\n<center><h4></h4></center>\r\n<center>api.vdsina.com, 11/Jun/2026:20:37:38 +0300</center>\r\n<p></p>\r\n<center>IP: 45.67.15.119 (country code: SE)</center>\r\n<p></p>\r\n<center>UserId: 770f432d-d67b0948-11e51451</center>\r\n<p></p>\r\n<center>Code: 361b364fa6bd98c8a5c141facd0852a2</center>\r\n</html>",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:03.002Z"
+      "checkedAt": "2026-06-11T17:37:37.933Z"
     },
     {
       "id": "cp",
@@ -83,12 +83,12 @@
       "label": "CP (Status Page)",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 528,
+      "responseMs": 458,
       "up": true,
       "redirect": null,
       "bodySnippet": "<html><head><meta name=\"robots\" content=\"noindex, noarchive\" /><style>.gorizontal-vertikal {position: absolute;margin: auto;top: 0;right: 0;bottom: 0;left: 0;width: 66px;height: 66px;}</style></head>\n<body><div class=\"gorizontal-vertikal\"><img src=\"data:image/gif;base64,R0lGODlhQgBCAPMAAP///wAAAExMTHp6etzc3KCgoPj4+BwcHMLCwgAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAQgBCAAAE/xDISau9VBzMu/8VcRTWsVXFYYBsS4knZZYH4d6gYdpyLMErnBAwGFg0p",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:03.087Z"
+      "checkedAt": "2026-06-11T17:37:37.942Z"
     },
     {
       "id": "cp-login",
@@ -96,12 +96,12 @@
       "label": "CP Login",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 298,
+      "responseMs": 452,
       "up": true,
       "redirect": null,
       "bodySnippet": "<html><head><meta name=\"robots\" content=\"noindex, noarchive\" /><style>.gorizontal-vertikal {position: absolute;margin: auto;top: 0;right: 0;bottom: 0;left: 0;width: 66px;height: 66px;}</style></head>\n<body><div class=\"gorizontal-vertikal\"><img src=\"data:image/gif;base64,R0lGODlhQgBCAPMAAP///wAAAExMTHp6etzc3KCgoPj4+BwcHMLCwgAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAQgBCAAAE/xDISau9VBzMu/8VcRTWsVXFYYBsS4knZZYH4d6gYdpyLMErnBAwGFg0p",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:02.858Z"
+      "checkedAt": "2026-06-11T17:37:37.936Z"
     },
     {
       "id": "panel",
@@ -109,12 +109,12 @@
       "label": "Panel",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 200,
+      "responseMs": 43,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:02.759Z"
+      "checkedAt": "2026-06-11T17:37:37.528Z"
     },
     {
       "id": "my",
@@ -122,12 +122,12 @@
       "label": "My (LK)",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 199,
+      "responseMs": 66,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:02.759Z"
+      "checkedAt": "2026-06-11T17:37:37.552Z"
     },
     {
       "id": "bill",
@@ -135,12 +135,12 @@
       "label": "Billing",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 297,
+      "responseMs": 95,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:02.859Z"
+      "checkedAt": "2026-06-11T17:37:37.582Z"
     },
     {
       "id": "support",
@@ -148,12 +148,12 @@
       "label": "Support",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 290,
+      "responseMs": 126,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:02.853Z"
+      "checkedAt": "2026-06-11T17:37:37.614Z"
     },
     {
       "id": "status",
@@ -161,12 +161,12 @@
       "label": "Status (Official)",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 389,
+      "responseMs": 150,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:02.952Z"
+      "checkedAt": "2026-06-11T17:37:37.638Z"
     },
     {
       "id": "docs",
@@ -174,12 +174,12 @@
       "label": "Docs",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 391,
+      "responseMs": 171,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:02.955Z"
+      "checkedAt": "2026-06-11T17:37:37.660Z"
     },
     {
       "id": "auth",
@@ -187,12 +187,12 @@
       "label": "Auth",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 522,
+      "responseMs": 205,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:03.086Z"
+      "checkedAt": "2026-06-11T17:37:37.694Z"
     },
     {
       "id": "www",
@@ -200,12 +200,12 @@
       "label": "WWW (Main)",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 1085,
+      "responseMs": 647,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"en\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Cloud VPS/VDS servers with Windows and Linux for any task. All functions in one click: reboot, install OS, manage VDS servers. Instant activation of ordered services.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152x152\" href=\"/apple",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:03.651Z"
+      "checkedAt": "2026-06-11T17:37:38.138Z"
     },
     {
       "id": "vdsina-ru",
@@ -213,12 +213,12 @@
       "label": "VDSina.ru",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 858,
+      "responseMs": 639,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"ru\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Облачные VPS/VDS серверы c Windows и Linux для любых задач. Все функции в один клик: перезагружайте, устанавливайте ОС, управляйте VDS серверами. Мгновенная активация заказанных услуг.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:03.425Z"
+      "checkedAt": "2026-06-11T17:37:38.131Z"
     },
     {
       "id": "panel-ru",
@@ -226,12 +226,12 @@
       "label": "Panel .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 1847,
+      "responseMs": 1373,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:04.413Z"
+      "checkedAt": "2026-06-11T17:37:38.863Z"
     },
     {
       "id": "my-ru",
@@ -239,12 +239,12 @@
       "label": "My .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 702,
+      "responseMs": 197,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T17:34:03.268Z"
+      "checkedAt": "2026-06-11T17:37:37.688Z"
     },
     {
       "id": "api-ru",
@@ -252,12 +252,12 @@
       "label": "API .ru",
       "category": "api",
       "httpCode": 302,
-      "responseMs": 1017,
+      "responseMs": 446,
       "up": true,
       "redirect": "https://vdsina.ru/",
       "bodySnippet": "<html>\r\n<head><title>302 Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>302 Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T17:34:03.584Z"
+      "checkedAt": "2026-06-11T17:37:37.937Z"
     }
   ],
   "dns": [
@@ -335,7 +335,7 @@
     "v4Ips": 94208,
     "visibility": 327,
     "totalPeers": 327,
-    "checkedAt": "2026-06-11T17:34:04.833Z",
+    "checkedAt": "2026-06-11T17:37:47.768Z",
     "error": null
   },
   "rangeStatus": [
@@ -2546,6 +2546,6 @@
     "raw": "",
     "updates": [],
     "hash": "d0db68a344d1ad23",
-    "lastParsed": "2026-06-11T17:34:04.888Z"
+    "lastParsed": "2026-06-11T17:37:48.229Z"
   }
 }
