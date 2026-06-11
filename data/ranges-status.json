@@ -998,8 +998,8 @@
       },
       {
         "ip": "195.63.128.50",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "195.63.131.5",
@@ -1012,9 +1012,9 @@
         "banner": ""
       }
     ],
-    "alive": 4,
+    "alive": 5,
     "total": 12,
-    "percent": 33,
+    "percent": 42,
     "dc": "partial",
     "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15",
     "status": "ALIVE"
