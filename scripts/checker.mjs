@@ -296,6 +296,12 @@ function detectChanges(prev, curr) {
         prevCode: p.httpCode, newCode: e.httpCode,
         newError: e.error
       });
+    } else if (p && !e.up && p.httpCode !== e.httpCode && p.httpCode && e.httpCode) {
+      changes.push({
+        type: 'code_change',
+        label: e.label, url: e.url,
+        prevCode: p.httpCode, newCode: e.httpCode
+      });
     }
   }
   if (prev.dns && curr.dns) {
@@ -327,6 +333,7 @@ function formatNotification(changes, cpChange, rangeChanges, bgpPrev, bgpCurr) {
   for (const c of changes) {
     if (c.type === 'recovery') lines.push(`✅ <b>${c.label}</b> — восстановлен (HTTP ${c.newCode})`);
     else if (c.type === 'down') lines.push(`🔴 <b>${c.label}</b> — недоступен (${c.newError || 'HTTP ' + c.newCode})`);
+    else if (c.type === 'code_change') lines.push(`⚠️ <b>${c.label}</b> — HTTP ${c.prevCode} → ${c.newCode}`);
     else if (c.type === 'dns_restored') lines.push(`📡 DNS: <b>${c.domain}</b> → ${c.ips.join(', ')}`);
     else if (c.type === 'dns_lost') lines.push(`⚠️ DNS: <b>${c.domain}</b> — пропал`);
   }

@@ -26,7 +26,8 @@ const text = `<b>📊 Сводка по инциденту VDSina</b>
 <b>🏢 VDSina — официально</b>
 🟡 <b>cp.vdsina.com</b> — без изменений с 10.06
 «DC3 серверы запущены», HDD/бэкапы ограничены, панель .com в работе
-🔴 <b>api / userapi .com</b> — 504, в ЛК войти нельзя
+🔴 <b>api.vdsina.com</b> — 403 Blocked (WAF, раньше 504)
+🔴 <b>userapi.vdsina.com</b> — 504, в ЛК войти нельзя
 
 <b>📡 Мониторинг сейчас</b>
 🌐 Эндпоинты: <b>${s.endpointsUp}/${s.endpointsTotal}</b> UP
