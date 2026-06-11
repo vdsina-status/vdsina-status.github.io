@@ -36,6 +36,10 @@ a{color:var(--c);text-decoration:none}a:hover{text-decoration:underline}
 .meta .dot{width:8px;height:8px;border-radius:50%;background:var(--g);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .meta em{color:var(--y2);font-style:normal;font-weight:600}
+.hdr.happy{background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(52,211,153,.06));border:1px solid var(--gbr);border-radius:var(--rad);padding:14px 18px;margin-bottom:16px}
+.hdr.happy h1 span{color:var(--g2)}
+.hdr.happy h1 .logo{background:linear-gradient(135deg,var(--g),var(--g2));box-shadow:0 0 22px rgba(16,185,129,.35)}
+.hdr.happy .dot{background:var(--g2);box-shadow:0 0 10px rgba(52,211,153,.55);animation:blink 1.2s infinite}
 
 /* Cards */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:20px;transition:border-color .2s}
@@ -70,6 +74,23 @@ a{color:var(--c);text-decoration:none}a:hover{text-decoration:underline}
 .timer .seg{font-size:28px;font-weight:700;line-height:1}
 .timer .unit{font-size:11px;color:var(--muted);margin:0 6px 0 1px;font-weight:500}
 .timer .d{color:var(--r)}.timer .h{color:var(--o)}.timer .m{color:var(--y)}.timer .s{color:var(--muted)}
+
+.hero.happy{background:linear-gradient(135deg,rgba(16,185,129,.14) 0%,rgba(52,211,153,.08) 45%,rgba(6,182,212,.05) 100%);border-color:var(--gbr)}
+.hero.happy::before{background:radial-gradient(circle,rgba(16,185,129,.14),transparent 70%)}
+.hero.happy .hero-badge{background:var(--gbg);color:var(--g);border-color:var(--gbr)}
+.hero.happy h2{color:var(--g2)}
+.news-celebrate{background:linear-gradient(90deg,rgba(16,185,129,.16),rgba(245,158,11,.1),rgba(167,139,250,.08),rgba(16,185,129,.16));border:1px solid var(--gbr);border-radius:var(--rad);padding:20px 22px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+.news-celebrate h3{font-size:21px;font-weight:900;color:var(--g2);margin-bottom:8px;letter-spacing:-.02em}
+.news-celebrate p{font-size:14px;color:var(--text2);line-height:1.65;max-width:720px;margin:0 auto}
+.salute{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.salute i{position:absolute;font-style:normal;font-size:22px;animation:salute 2.8s ease-out infinite;opacity:0}
+.salute i:nth-child(1){left:8%;bottom:10%;animation-delay:0s}
+.salute i:nth-child(2){left:22%;bottom:5%;animation-delay:.4s}
+.salute i:nth-child(3){left:42%;bottom:12%;animation-delay:.8s}
+.salute i:nth-child(4){left:58%;bottom:6%;animation-delay:1.2s}
+.salute i:nth-child(5){left:74%;bottom:10%;animation-delay:1.6s}
+.salute i:nth-child(6){left:88%;bottom:4%;animation-delay:2s}
+@keyframes salute{0%{transform:translateY(0) scale(.4) rotate(0deg);opacity:0}15%{opacity:1}100%{transform:translateY(-90px) scale(1.3) rotate(25deg);opacity:0}}
 
 /* Delta cards */
 .delta{padding:16px 18px}
@@ -173,7 +194,7 @@ canvas{width:100%;height:160px;margin-top:8px}
 <div class="w">
 
 <!-- Header -->
-<div class="hdr">
+<div class="hdr happy">
   <h1><div class="logo">V</div><span>VDSina</span> Status</h1>
   <div class="meta"><div class="dot"></div><em id="lastCheck">...</em> · <span id="nextRefresh"></span></div>
 </div>
@@ -182,23 +203,30 @@ canvas{width:100%;height:160px;margin-top:8px}
 
 <div id="app" style="display:none">
 
+<!-- News -->
+<div class="news-celebrate">
+  <div class="salute" aria-hidden="true"><i>🎆</i><i>✨</i><i>🎉</i><i>🎇</i><i>✨</i><i>🎆</i></div>
+  <h3>🎆🎉 Панель управления снова работает!</h3>
+  <p><b>cp.vdsina.com</b> доступен — можно войти в личный кабинет, проверить серверы и тикеты. API отвечает (авторизация работает). DC2 по-прежнему недоступен, DC3 — частично восстановлен.</p>
+</div>
+
 <!-- Hero -->
-<div class="hero">
+<div class="hero happy">
   <div class="hero-grid">
     <div>
-      <div class="hero-badge" id="heroBadge">⚠ ИНЦИДЕНТ VDSINA</div>
-      <h2 id="heroTitle"></h2>
-      <div class="hero-text" id="heroDetail"></div>
+      <div class="hero-badge" id="heroBadge">🎉 ПАНЕЛЬ ЗАРАБОТАЛА</div>
+      <h2 id="heroTitle">cp.vdsina.com снова доступен — добро пожаловать обратно!</h2>
+      <div class="hero-text" id="heroDetail">11 июня 2026: панель управления VDSina восстановлена. Можно авторизоваться, управлять VDS и следить за статусом. Инцидент с DC2 продолжается, но главное — личный кабинет снова с нами.</div>
       <div class="tags" id="heroTags">
-        <span class="tag tag-r">Дедлайн: 10 июня (просрочен)</span>
+        <span class="tag tag-g">✅ cp.vdsina.com — работает</span>
+        <span class="tag tag-g">✅ Вход в ЛК доступен</span>
+        <span class="tag tag-y">DC3: частично восстановлен</span>
         <span class="tag tag-r">DC2: оборудование изъято</span>
-        <span class="tag tag-g">DC3: частично восстановлен</span>
-        <span class="tag tag-y">API: 403 Blocked (было 504)</span>
-        <span class="tag tag-m">cp.vdsina.com</span>
+        <span class="tag tag-m">11.06.2026</span>
       </div>
     </div>
     <div class="timer-box">
-      <div class="timer-label">Длительность инцидента</div>
+      <div class="timer-label">С начала инцидента</div>
       <div class="timer" id="timer"></div>
     </div>
   </div>
@@ -256,7 +284,8 @@ canvas{width:100%;height:160px;margin-top:8px}
     <div style="margin-top:20px">
       <div class="card-t" style="margin-bottom:10px"><div class="ico" style="background:var(--ybg);color:var(--y)">📅</div>Хронология</div>
       <div class="g1" style="gap:8px">
-        <div class="tl-item"><div class="tl-date">11.06</div><div><div class="tl-title">API: 504 → 403 Blocked</div><div class="tl-text">api.vdsina.com перешёл с Gateway Timeout (504) на WAF StormWall «403 Blocked». Периметр отвечает, бэкенд панели по-прежнему недоступен. userapi.vdsina.com — 504.</div></div></div>
+        <div class="tl-item" style="border-left:3px solid var(--g);padding-left:12px;background:var(--gbg);border-radius:var(--rad-xs)"><div class="tl-date">11.06</div><div><div class="tl-title" style="color:var(--g2)">🎉 Панель управления заработала!</div><div class="tl-text">cp.vdsina.com и вход в личный кабинет снова доступны. API отвечает — можно авторизоваться и управлять серверами. Радостная новость после 9+ дней простоя!</div></div></div>
+        <div class="tl-item"><div class="tl-date">11.06</div><div><div class="tl-title">API: 504 → 401/403</div><div class="tl-text">api.vdsina.com перешёл с Gateway Timeout (504) на ответы WAF и JSON API — бэкенд снова жив. Ранее: «403 Blocked» без JSON.</div></div></div>
         <div class="tl-item"><div class="tl-date">10.06</div><div><div class="tl-title">DC3 серверы запущены</div><div class="tl-text">DC3 онлайн. Ограничения: HDD, бэкапы. Панель — в работе.</div></div></div>
         <div class="tl-item"><div class="tl-date">08.06</div><div><div class="tl-title">Дедлайн продлён</div><div class="tl-text">Переезд DC3 продлён до 10 июня.</div></div></div>
         <div class="tl-item"><div class="tl-date">04–07.06</div><div><div class="tl-title">Переезд DC3</div><div class="tl-text">Эвакуация на новую площадку.</div></div></div>
@@ -267,8 +296,9 @@ canvas{width:100%;height:160px;margin-top:8px}
       <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
         <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600;letter-spacing:.02em">Обновления 09–11.06 · чат МакХост (апстрим MIRhosting, как у VDSina)</div>
         <div class="g1" style="gap:8px">
+          <div class="tl-item" style="border-left:3px solid var(--g);padding-left:12px;background:var(--gbg);border-radius:var(--rad-xs)"><div class="tl-date">11.06</div><div><div class="tl-title" style="color:var(--g2)">🎆 VDSina: панель восстановлена</div><div class="tl-text">cp.vdsina.com — работает, личный кабинет доступен. Мониторинг и канал @VdsinaINFO публикуют радостную новость.</div></div></div>
           <div class="tl-item"><div class="tl-date">11.06</div><div><div class="tl-title">МакХост: VDS в новом ДЦ</div><div class="tl-text">Почти все VDS восстановлены из бэкапов в новом ДЦ. Старый ДЦ — юристы добиваются включения. Старая панель cp.mchost.ru — «скоро». Shared-хостинг — после включения старого ДЦ. Компенсация за простой — обязательно.</div></div></div>
-          <div class="tl-item"><div class="tl-date">11.06</div><div><div class="tl-title">API: 504 → 403 Blocked</div><div class="tl-text">Мониторинг зафиксировал смену ответа api.vdsina.com: таймаут 504 → WAF «403 Blocked» (StormWall). Cookies/сессия не помогают — JSON API закрыт.</div></div></div>
+          <div class="tl-item"><div class="tl-date">11.06</div><div><div class="tl-title">API: 504 → 401/403</div><div class="tl-text">api.vdsina.com: таймаут 504 → JSON-ответы API (401 Unauthorized — нормально без токена). Бэкенд снова отвечает.</div></div></div>
           <div class="tl-item"><div class="tl-date">11.06</div><div><div class="tl-title">VDSina: без новых апдейтов</div><div class="tl-text">cp.vdsina.com с 10.06 без изменений: DC3 запущен, HDD/бэкапы ограничены, панель .com — в работе.</div></div></div>
           <div class="tl-item"><div class="tl-date">09.06</div><div><div class="tl-title">МакХост: сигнал из NL</div><div class="tl-text">Предварительный положительный ответ от NL DC: принципиальная возможность разблокировки и включения оборудования. Формируется график включения серверов.</div></div></div>
           <div class="tl-item"><div class="tl-date">09–10.06</div><div><div class="tl-title">Боль клиентов (оба чата)</div><div class="tl-text">DNS без панели, бэкапы на том же сервере, cp.* недоступен. Habr/Arbitron: FIOD → nLighten → MIRhosting → VDSina/mchost. Часть DC3 SSH жива, LK/API — нет.</div></div></div>
@@ -383,15 +413,12 @@ function renderDeltas(h){
 function render(data){
   document.getElementById('loading').style.display='none';
   document.getElementById('app').style.display='';
-  const s=data.summary,cp=data.cpContent||{};
+  const s=data.summary;
   const cd=new Date(data.checkedAt);lastDataTime=cd.getTime();
   document.getElementById('lastCheck').textContent=cd.toLocaleString('ru-RU',{timeZone:'Europe/Moscow'});updateAge();
 
-  const t=cp.updates?.find(u=>u.type==='title'),d=cp.updates?.find(u=>u.type==='detail'),l=cp.updates?.find(u=>u.type==='lead');
   const days=Math.floor((Date.now()-INCIDENT_START.getTime())/864e5);
-  document.getElementById('heroBadge').textContent=`⚠ ИНЦИДЕНТ VDSINA — ДЕНЬ ${days}`;
-  document.getElementById('heroTitle').textContent=t?t.text:'Панель управления и API недоступны';
-  document.getElementById('heroDetail').innerHTML=(d?d.text:'DC2 — серверы недоступны. DC3 — частично восстановлен.')+(l?`<br><span style="color:var(--y)">${l.text}</span>`:'');
+  /* Hero stays in celebration mode — panel restored 11.06.2026 */
 
   document.getElementById('summaryBar').innerHTML=
     `<div class="stat"><div class="num c-g">${s.endpointsUp}</div><div class="lbl">UP / ${s.endpointsTotal}</div></div>`+
