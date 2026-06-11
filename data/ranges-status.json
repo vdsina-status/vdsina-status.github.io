@@ -1957,8 +1957,8 @@
     "probes": [
       {
         "ip": "91.201.113.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "91.201.113.50",
@@ -1996,11 +1996,11 @@
         "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       }
     ],
-    "alive": 7,
+    "alive": 6,
     "total": 8,
-    "percent": 88,
+    "percent": 75,
     "dc": "DC3",
-    "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.16",
+    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
     "status": "ALIVE"
   },
   {
