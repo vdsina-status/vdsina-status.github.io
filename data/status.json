@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-11T10:54:39.695Z",
+  "checkedAt": "2026-06-11T10:59:39.660Z",
   "incidentStart": "2026-06-02T13:54:00Z",
   "summary": {
     "endpointsUp": 4,
@@ -18,12 +18,12 @@
       "label": "API Root",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10240,
+      "responseMs": 10229,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:13.582Z"
+      "checkedAt": "2026-06-11T10:59:13.609Z"
     },
     {
       "id": "api-v1",
@@ -31,12 +31,12 @@
       "label": "API /v1",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10277,
+      "responseMs": 10183,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:13.663Z"
+      "checkedAt": "2026-06-11T10:59:13.612Z"
     },
     {
       "id": "api-v1-account",
@@ -44,12 +44,12 @@
       "label": "API /v1/account",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10204,
+      "responseMs": 10178,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:13.590Z"
+      "checkedAt": "2026-06-11T10:59:13.609Z"
     },
     {
       "id": "api-v1-server",
@@ -57,12 +57,12 @@
       "label": "API /v1/server",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10193,
+      "responseMs": 10245,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:13.580Z"
+      "checkedAt": "2026-06-11T10:59:13.677Z"
     },
     {
       "id": "api-v1-auth",
@@ -70,12 +70,12 @@
       "label": "API /v1/auth",
       "category": "api",
       "httpCode": 504,
-      "responseMs": 10199,
+      "responseMs": 10178,
       "up": false,
       "redirect": null,
       "bodySnippet": "<html>\r\n<head><title>504 Gateway Timeout</title></head>\r\n<body>\r\n<center><h1>504 Gateway Timeout</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:13.587Z"
+      "checkedAt": "2026-06-11T10:59:13.611Z"
     },
     {
       "id": "cp",
@@ -83,12 +83,12 @@
       "label": "CP (Status Page)",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 333,
+      "responseMs": 326,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:03.723Z"
+      "checkedAt": "2026-06-11T10:59:03.764Z"
     },
     {
       "id": "cp-login",
@@ -96,12 +96,12 @@
       "label": "CP Login",
       "category": "panel",
       "httpCode": 200,
-      "responseMs": 326,
+      "responseMs": 393,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title data-i18n=\"meta.title\">Service availability notice</title>\n  <meta name=\"description\" content=\"Client notice regarding temporary unavailability of some servers in Data Center 2.\" data-i18n-attr=\"content:meta.description\" />\n  <style>\n    :root {\n      --bg: #f3f7fb;\n      --bg-2: #eaf2fb;\n      --card: #ffffff;\n      --text: #1e2a36;\n      --muted: ",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:03.720Z"
+      "checkedAt": "2026-06-11T10:59:03.831Z"
     },
     {
       "id": "panel",
@@ -109,12 +109,12 @@
       "label": "Panel",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 132,
+      "responseMs": 106,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.522Z"
+      "checkedAt": "2026-06-11T10:59:03.542Z"
     },
     {
       "id": "my",
@@ -122,12 +122,12 @@
       "label": "My (LK)",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 129,
+      "responseMs": 96,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.520Z"
+      "checkedAt": "2026-06-11T10:59:03.532Z"
     },
     {
       "id": "bill",
@@ -135,12 +135,12 @@
       "label": "Billing",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 179,
+      "responseMs": 152,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.572Z"
+      "checkedAt": "2026-06-11T10:59:03.590Z"
     },
     {
       "id": "support",
@@ -148,12 +148,12 @@
       "label": "Support",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 183,
+      "responseMs": 160,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.577Z"
+      "checkedAt": "2026-06-11T10:59:03.599Z"
     },
     {
       "id": "status",
@@ -161,12 +161,12 @@
       "label": "Status (Official)",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 221,
+      "responseMs": 214,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.615Z"
+      "checkedAt": "2026-06-11T10:59:03.654Z"
     },
     {
       "id": "docs",
@@ -174,12 +174,12 @@
       "label": "Docs",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 246,
+      "responseMs": 211,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.641Z"
+      "checkedAt": "2026-06-11T10:59:03.652Z"
     },
     {
       "id": "auth",
@@ -187,12 +187,12 @@
       "label": "Auth",
       "category": "infra",
       "httpCode": 0,
-      "responseMs": 322,
+      "responseMs": 258,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.718Z"
+      "checkedAt": "2026-06-11T10:59:03.699Z"
     },
     {
       "id": "www",
@@ -200,12 +200,12 @@
       "label": "WWW (Main)",
       "category": "site",
       "httpCode": 0,
-      "responseMs": 10703,
+      "responseMs": 10714,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:14.100Z"
+      "checkedAt": "2026-06-11T10:59:14.156Z"
     },
     {
       "id": "vdsina-ru",
@@ -213,12 +213,12 @@
       "label": "VDSina.ru",
       "category": "site",
       "httpCode": 200,
-      "responseMs": 329,
+      "responseMs": 357,
       "up": true,
       "redirect": null,
       "bodySnippet": "<!DOCTYPE html>\r\n<html dir=\"ltr\" lang=\"ru\">\r\n\t<head>\r\n\t\t<meta charset=\"UTF-8\">\r\n\t\t<!--[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><![endif]-->\r\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t\t<meta name=\"description\" content=\"Облачные VPS/VDS серверы c Windows и Linux для любых задач. Все функции в один клик: перезагружайте, устанавливайте ОС, управляйте VDS серверами. Мгновенная активация заказанных услуг.\">\r\n\t\t<link rel=\"apple-touch-icon\" sizes=\"152",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:03.727Z"
+      "checkedAt": "2026-06-11T10:59:03.800Z"
     },
     {
       "id": "panel-ru",
@@ -226,12 +226,12 @@
       "label": "Panel .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 2596,
+      "responseMs": 2563,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:05.994Z"
+      "checkedAt": "2026-06-11T10:59:06.006Z"
     },
     {
       "id": "my-ru",
@@ -239,12 +239,12 @@
       "label": "My .ru",
       "category": "panel",
       "httpCode": 0,
-      "responseMs": 358,
+      "responseMs": 324,
       "up": false,
       "redirect": null,
       "bodySnippet": "",
       "error": "fetch failed",
-      "checkedAt": "2026-06-11T10:54:03.756Z"
+      "checkedAt": "2026-06-11T10:59:03.767Z"
     },
     {
       "id": "api-ru",
@@ -252,12 +252,12 @@
       "label": "API .ru",
       "category": "api",
       "httpCode": 302,
-      "responseMs": 599,
+      "responseMs": 515,
       "up": true,
       "redirect": "https://vdsina.ru/",
       "bodySnippet": "<html>\r\n<head><title>302 Found</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>302 Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
       "error": null,
-      "checkedAt": "2026-06-11T10:54:03.998Z"
+      "checkedAt": "2026-06-11T10:59:03.960Z"
     }
   ],
   "dns": [
@@ -335,7 +335,7 @@
     "v4Ips": 94208,
     "visibility": 327,
     "totalPeers": 327,
-    "checkedAt": "2026-06-11T10:54:14.366Z",
+    "checkedAt": "2026-06-11T10:59:14.352Z",
     "error": null
   },
   "rangeStatus": [
@@ -2559,6 +2559,6 @@
       }
     ],
     "hash": "5fdedd3fe1f765a9",
-    "lastParsed": "2026-06-11T10:54:14.560Z"
+    "lastParsed": "2026-06-11T10:59:14.532Z"
   }
 }
