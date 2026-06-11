@@ -5,11 +5,12 @@ import { fileURLToPath } from 'url';
 import net from 'net';
 import crypto from 'crypto';
 import dnsLib from 'dns/promises';
+import { loadConfig } from './load-config.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const DATA = path.join(ROOT, 'data');
-const CONFIG = JSON.parse(fs.readFileSync(path.join(DATA, 'config.json'), 'utf8'));
+const CONFIG = loadConfig(ROOT);
 const DRY_RUN = process.argv.includes('--dry-run');
 const STATUS_FILE = path.join(DATA, 'status.json');
 const HISTORY_FILE = path.join(DATA, 'history.json');
@@ -267,6 +268,10 @@ function saveCpSnapshot(html, hash) {
 async function sendTelegram(text) {
   if (DRY_RUN) { console.log('[DRY-RUN TG]', text); return; }
   const { botToken, chatId } = CONFIG.telegram;
+  if (!botToken) {
+    console.warn('TELEGRAM_BOT_TOKEN not set — skipping Telegram notification');
+    return;
+  }
   try {
     await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',

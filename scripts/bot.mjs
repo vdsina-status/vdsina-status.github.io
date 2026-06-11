@@ -8,11 +8,13 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import net from 'net';
+import { loadConfig, requireBotToken } from './load-config.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA = path.join(__dirname, '..', 'data');
-const CONFIG = JSON.parse(fs.readFileSync(path.join(DATA, 'config.json'), 'utf8'));
-const { botToken } = CONFIG.telegram;
+const ROOT = path.join(__dirname, '..');
+const DATA = path.join(ROOT, 'data');
+const CONFIG = loadConfig(ROOT);
+const botToken = requireBotToken(CONFIG);
 const API = `https://api.telegram.org/bot${botToken}`;
 
 const FOLK_DC = {

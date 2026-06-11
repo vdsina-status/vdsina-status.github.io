@@ -16,13 +16,18 @@
 ## Запуск
 
 ```bash
+cp .env.example .env   # добавить TELEGRAM_BOT_TOKEN (не коммитить!)
 node scripts/checker.mjs           # полная проверка + Telegram
 node scripts/checker.mjs --dry-run  # тест без отправки в Telegram
+node scripts/bot.mjs                # интерактивный бот (long-polling)
 ```
+
+**Секреты:** токен бота только в `.env` (локально) или GitHub Secret `TELEGRAM_BOT_TOKEN`. В `data/config.json` его нет.
 
 ## GitHub Actions
 
 Автоматическая проверка каждые 5 минут через `.github/workflows/check.yml`.
+В Settings → Secrets → Actions добавьте `TELEGRAM_BOT_TOKEN`.
 
 ## Структура
 
@@ -30,7 +35,8 @@ node scripts/checker.mjs --dry-run  # тест без отправки в Telegr
 ├── index.html           # Публичный дашборд
 ├── scripts/checker.mjs  # Чекер (zero dependencies, Node 20+)
 ├── data/
-│   ├── config.json      # Конфигурация (эндпоинты, Telegram, DC-маппинг)
+│   ├── config.json      # Конфигурация (эндпоинты, chatId, DC-маппинг)
+│   ├── .env             # TELEGRAM_BOT_TOKEN (локально, в .gitignore)
 │   ├── status.json      # Текущий статус (генерируется чекером)
 │   ├── history.json     # История проверок
 │   └── cp-content.json  # Парсинг cp.vdsina.com
