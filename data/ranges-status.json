@@ -2155,8 +2155,8 @@
     "probes": [
       {
         "ip": "94.103.80.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "94.103.80.50",
@@ -2194,11 +2194,11 @@
         "banner": ""
       }
     ],
-    "alive": 4,
+    "alive": 3,
     "total": 8,
-    "percent": 50,
+    "percent": 38,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.11",
-    "status": "ALIVE"
+    "status": "PARTIAL"
   }
 ]
