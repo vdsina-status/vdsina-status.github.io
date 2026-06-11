@@ -1424,8 +1424,8 @@
       },
       {
         "ip": "77.105.143.50",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "77.105.141.5",
@@ -1448,9 +1448,9 @@
         "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.8"
       }
     ],
-    "alive": 6,
+    "alive": 5,
     "total": 8,
-    "percent": 75,
+    "percent": 63,
     "dc": "DC2 (partial)",
     "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u6",
     "status": "ALIVE"
