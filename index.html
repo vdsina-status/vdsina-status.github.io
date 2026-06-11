@@ -450,7 +450,7 @@ function drawChart(h){
 }
 
 async function load(){
-  try{const bust='?t='+Date.now(),[sr,hr]=await Promise.all([fetch(DATA_URL+bust),fetch(HIST_URL+bust).catch(()=>null)]);
+  try{const bust='?t='+Date.now(),[sr,hr]=await Promise.all([fetch(DATA_URL+bust,{cache:'no-store'}),fetch(HIST_URL+bust,{cache:'no-store'}).catch(()=>null)]);
   if(!sr.ok)throw new Error('no data');const data=await sr.json();render(data);
   if(hr?.ok){const h=await hr.json();drawChart(h);renderDeltas(h)}}
   catch(e){document.getElementById('loading').innerHTML=`<span class="c-r">Ошибка: ${e.message}</span>`}}
