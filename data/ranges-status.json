@@ -1605,8 +1605,8 @@
       },
       {
         "ip": "78.40.195.5",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
+        "alive": false,
+        "banner": ""
       },
       {
         "ip": "78.40.195.50",
@@ -1624,12 +1624,12 @@
         "banner": ""
       }
     ],
-    "alive": 4,
+    "alive": 3,
     "total": 8,
-    "percent": 50,
+    "percent": 38,
     "dc": "DC3",
     "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
-    "status": "ALIVE"
+    "status": "PARTIAL"
   },
   {
     "range": "80.85.x.x",
@@ -1761,8 +1761,8 @@
     "probes": [
       {
         "ip": "88.210.6.5",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15"
       },
       {
         "ip": "88.210.6.50",
@@ -1800,11 +1800,11 @@
         "banner": ""
       }
     ],
-    "alive": 4,
+    "alive": 5,
     "total": 8,
-    "percent": 50,
+    "percent": 63,
     "dc": "DC3",
-    "banner": "SSH-2.0-OpenSSH_7.4",
+    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
     "status": "ALIVE"
   },
   {
@@ -1885,8 +1885,8 @@
     "probes": [
       {
         "ip": "89.124.71.5",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "89.124.71.50",
@@ -1915,8 +1915,8 @@
       },
       {
         "ip": "89.124.82.5",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15"
       },
       {
         "ip": "89.124.82.50",
@@ -1925,8 +1925,8 @@
       },
       {
         "ip": "89.124.103.5",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.14"
       },
       {
         "ip": "89.124.103.50",
@@ -1940,15 +1940,15 @@
       },
       {
         "ip": "89.124.117.50",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15"
       }
     ],
-    "alive": 6,
+    "alive": 10,
     "total": 12,
-    "percent": 50,
+    "percent": 83,
     "dc": "DC3",
-    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.15",
+    "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13",
     "status": "ALIVE"
   },
   {
@@ -1972,8 +1972,8 @@
       },
       {
         "ip": "91.201.113.50",
-        "alive": false,
-        "banner": ""
+        "alive": true,
+        "banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.13"
       },
       {
         "ip": "91.201.114.5",
@@ -1992,8 +1992,8 @@
       },
       {
         "ip": "91.201.112.50",
-        "alive": true,
-        "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15"
+        "alive": false,
+        "banner": ""
       }
     ],
     "alive": 6,
